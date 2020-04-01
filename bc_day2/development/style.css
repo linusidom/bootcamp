@@ -1,0 +1,63 @@
+body{
+	margin: 0 auto;
+	font-family: Arial;
+}
+#header{
+	min-height: 80px;
+	background: #ccc;
+	
+	padding: 0;
+	text-align: center;
+}
+
+#header h1{
+	margin: 0;
+	padding: 20px 0;	
+}
+
+#showcase {
+	text-align: center;
+	
+	padding: 50px;
+	background: coral;
+}
+
+#showcase h3{
+	font-size: 40px;
+}
+
+form {
+	padding: 30px;
+}
+
+form input {
+	margin: 20px;
+	width: 300px;
+	padding: 10px;
+}
+
+.button {
+	background: blue;
+	padding: 20px;
+	width: 300px;
+}
+
+#images img{
+	width: 100px;
+}
+
+#images{
+	display: grid;
+	grid-gap: 10px;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+
+
+
+
+
+
+
+
+

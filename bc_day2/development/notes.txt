@@ -1,0 +1,54 @@
+HTML Review
+====================
+High level Review of HTML tags
+Headings
+paragraph
+Ordered and unordered Lists
+Forms
+tables
+images
+Grouping Items with Divs
+
+HTML
+====================
+
+ID's
+Classes
+
+CSS
+==================
+Grabbing By Tag
+Grabbing By ID
+Grabbing By Class
+
+Desribe Convention
+	- Grabbing by ID for section of the page
+	- Grabbing by class for multiple elements of differing or same types
+	- Grabbing by Tag for specific element types
+
+display:none
+
+
+
+Text related properties
+color
+font-family
+font-size
+text-align
+
+Box
+borders
+padding
+margin
+
+
+Background Images
+https://source.unsplash.com/random/300x300
+
+Containers
+width and height
+
+Responsive Grid System
+
+BootStrap
+
