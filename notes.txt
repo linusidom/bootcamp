@@ -1,0 +1,19 @@
+Agenda
+================
+HTML
+
+What is HTML and why is it important
+What are tags
+Heading tags
+paragraph tags
+lists - ordered and unordered
+links
+tables
+forms
+images
+Classes and ID's
+
+CSS
+============
+What is CSS and why is it important
+how to select elements within HTML
