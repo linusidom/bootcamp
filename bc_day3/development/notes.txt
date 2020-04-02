@@ -1,0 +1,30 @@
+Build out Basic HTML Page
+======================
+Header
+- Navigation Menu
+Main
+- Simple Text
+About Us
+- Grid Text
+Apparel
+ - Images
+Contact Us
+- Form
+Footer
+
+Smooth Scrolling
+
+CSS
+=====================
+Apply BootStrap - explore out of the box sizing and elements
+
+Modify with Style CSS
+=====================
+Start with header and work down
+class container after header?
+
+Use the Grid System
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+https://source.unsplash.com/collection/1338351/480x480

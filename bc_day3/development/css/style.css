@@ -1,0 +1,106 @@
+/*Header Section*/
+
+#header{
+	background: #333;
+	position: sticky;
+	top: 0;
+}
+
+.headerTitle{
+	color: #ddd;
+	padding: 30px 0 0 30px;
+}
+
+.listItems {
+	display: grid;
+	grid-gap: 20px;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 4fr));
+	text-align: center;
+	padding: 20px 0 30px 0;
+	margin: 0;
+	list-style: none;
+}
+
+/* Main Section */
+#main{
+	background: url('https://source.unsplash.com/collection/1338351/480x480') no-repeat center/cover;
+	min-height: 500px;
+	text-align: center;
+}
+
+.mainTitle{
+	color: #ddd;
+	padding: 150px 0 30px 0;
+	font-size: 50px;
+}
+
+.mainText{
+	font-size: 20px;
+	color: #ddd;
+	width: 70%;
+	text-align: left;
+	padding: 0 0 0 35px;
+}
+
+
+/*About Us Section*/
+
+#about{
+	display: grid;
+	grid-template-columns: 2fr 2fr;
+	background: url('https://source.unsplash.com/collection/1338351/481x480') no-repeat center/cover;
+	min-height: 400px;
+}
+
+.aboutText{
+	padding: 50px;
+	color: #ddd;
+}
+
+
+/*Images*/
+
+.image{
+	width: 200px;
+}
+
+#apparel{
+	display: grid;
+	grid-gap: 20px;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 3fr));
+	text-align: center;
+	padding: 50px 0 30px 0;
+}
+
+.letterX {
+	color: coral;
+	font-size: 24px;
+	font-weight: bold;
+}
+
+form input{
+	margin: 10px;
+}
+
+footer{
+	background: #333;
+	color: #ddd;
+	padding: 30px;
+	text-align: center;
+}
+
+
+
+@media (max-width: 600px){
+	#about{
+		display: none;
+	}
+}
+
+
+
+
+
+
+
+
