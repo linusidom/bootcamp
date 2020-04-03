@@ -1,0 +1,22 @@
+Build Basic BootStrap Page
+=======================
+Use NavBar
+Cards
+Form
+
+Traditional way of making webpages
+Django way of making webpages
+
+Build out Pages
+=====================
+Build a couple Blog Post Pages
+
+
+container-fluid
+Change the Layout of the Header
+
+bootstrap - section
+d-flex justify-content-center mt-5
+
+
+https://source.unsplash.com/random/481x480
