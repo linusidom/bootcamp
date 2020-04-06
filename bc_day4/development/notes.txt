@@ -20,3 +20,9 @@ d-flex justify-content-center mt-5
 
 
 https://source.unsplash.com/random/481x480
+
+
+Add Webpage
+1. Add Link to The Base with DJango Template Call
+2. Add URL to urls.py to call the view
+3. Add View to Views.py to call the Template
