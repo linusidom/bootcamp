@@ -1,0 +1,11 @@
+Python Basics
+==================
+Numbers
+- Math, + - * / // % **
+- Order of Operations PEMDAS
+Strings
+- Split, join
+Lists
+Dictionaries
+
+Why should we even learn about Numbers Strings
