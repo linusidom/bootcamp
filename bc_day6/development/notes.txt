@@ -1,0 +1,21 @@
+Python Basics
+==================
+Python Review
+Numbers - Review
+- Math, + - * / // % **
+- Order of Operations PEMDAS
+Strings - Review
+- Split, join
+Lists
+- Why we use these
+- Indexing
+- Creation, append, pop, remove, insert, extend, indexOf, len, count, del
+
+Dictionaries
+- Why we use these
+- Creation add values, remove values
+
+JSON - JavaScript Object Notation
+
+Why should we even learn about Lists and Dictionaries
+
