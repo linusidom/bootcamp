@@ -9,3 +9,9 @@ Lists
 Dictionaries
 
 Why should we even learn about Numbers Strings
+
+.exe
+Windows - Try to read .exe - open in Notepad
+
+
+Above 3.6 okay
