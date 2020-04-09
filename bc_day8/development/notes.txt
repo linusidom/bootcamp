@@ -1,0 +1,41 @@
+Functions
+==============
+Variables
+Numbers, Strings, Lists, Dictionaries
+
+Conditionals
+If/Elif/Else
+
+Loops
+For/While
+
+All of these Run one time in the GLOBAL SCOPE
+No control over how many times, only where
+
+How do We control it - with Functions
+
+We can wrap Variables, Wrap Conditional, Wrap Loops all inside a Function
+
+Functions Create a LOCAL SCOPE
+affect only things inside here - Condo inside of a Building
+
+Parking Lot is in the Building Scope
+Condo is the Function Scope
+
+What happens to the Parking Lot affects everyone
+What happens in the Condo affects only the things inside the condo
+
+function my_func():
+	pass
+
+
+Decorators
+===================
+Benchmarking - testing time
+Logging
+Authentication - every page has to check whether youre authenticated or not - facebook, instagram, 
+
+
+
+
+
