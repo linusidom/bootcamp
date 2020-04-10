@@ -1,14 +1,14 @@
-# def initialization(name, age, height, weight):
-# 	return {'name':name,'age':age,'height':height,'weight':weight}
+def initialization(name, age, height, weight):
+	return {'name':name,'age':age,'height':height,'weight':weight}
 
-# def get_age(person):
-# 	return f"{person['name']} is {person['age']} years old"
+def get_age(person):
+	return f"{person['name']} is {person['age']} years old"
 
-# def get_height(person):
-# 	return f"{person['name']} is {person['height']} cm tall"
+def get_height(person):
+	return f"{person['name']} is {person['height']} cm tall"
 
-# def get_weight(person):
-# 	return f"{person['name']} is {person['weight']} kilos"
+def get_weight(person):
+	return f"{person['name']} is {person['weight']} kilos"
 
 
 # DRY - Don't Repeat Yourself
@@ -18,6 +18,8 @@
 # If we want to Track more than 1 Variable/Attribute, we should try to use Classes
 
 # Classes
+
+# Person is of Type Object
 
 class Person(object):
 
@@ -42,7 +44,9 @@ class Person(object):
 	def get_weight(self):
 		return f"{person['name']} is {person['weight']} kilos"
 
+# Employee is of Type Person
 
+# Inheritance
 class Employee(Person):
 		# Attributes - Same as Variables but Attributes are inside of a class
 	def __init__(self, name, age, height, weight, wage):
@@ -60,4 +64,27 @@ class Employee(Person):
 
 	def get_wage(self):
 		return f"{self.name} is paid {self.wage} baht per month"
+
+
+
+
+# Employee - Small Box - gets everything from Person and Object
+# Person - Big Box - gets everything from Object
+# Object - Biggest Box
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
