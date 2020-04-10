@@ -1,0 +1,20 @@
+Review
+=========
+Variables
+Numbers, Strings, Lists, Dictionaries, Tuples, Boolean
+
+Conditionals
+if/elif/else
+
+Loops
+For/While
+
+Functions
+Args/KeyWord Args
+
+We have all these tools to run a program and run functions but we're still missing something
+
+I can do everything inside of a function
+
+So Why do i need classes?
+
