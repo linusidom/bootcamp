@@ -1,0 +1,9 @@
+Review Homework and introduce Testing Methodologies
+
+Testing helps us scale projects
+
+Don't have to remember the entire project
+
+Automate verification
+
+Unittest
