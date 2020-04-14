@@ -1,0 +1,80 @@
+If Upgrade MacOS from Sierra to Mojave
+Or windows 7 to Windows 10
+Backwards Compatiability
+
+Virtual Environment
+- Library on Specific Version
+
+Model - Build Database
+View - Call from Database and Use which HTML File
+Template - Show what we want the user to see
+
+MVT
+
+
+Review
+1. Create Virtual Environment
+2. Activate the Virtual Environment
+3. Install Django
+4. Create Django Project
+5. Makemigrations - Prepare database
+6. Migrate - Setup Database
+7. Runserver
+
+
+Django Setup - Day One
+
+What is a Project?
+Project is the foundation/base/the ground floor of what all the applications sit on - Provides the basic plumbing, stairwells, overview look and feel of every application to come into the project
+
+django-admin startproject firstproject
+
+What is an application - The actual user interaction component, data is defined and stored from here
+What we want the users to see in every one of our pages
+django-admin startapp firstapp
+
+Project Settings
+TEMPLATES_DIR
+
+INSTALLED_APPS
+
+urls.py
+
+views.py
+
+Day 2
+Django App models and the database - DB Browser for SQL Lite
+Create a Model and add it to the Database - Introduce the Admin Page
+Create entries and remove them, explore how the Database looks
+pip install django-extensions pygraphviz
+
+Day 3 - URL Mappings and Function Based Views vs Class Based Views
+
+Day 4 - CRUD
+ListView DetailView
+UpdateView CreateView
+DeleteView
+
+Day 5 - Template Tags
+Explain Base and HTML tags
+Include
+For Loops
+If / else
+Focus on ListView
+
+Day 6 - Forms
+
+Day 7 - API's
+
+Day 8 - DOM Manipulation
+
+
+
+
+
+
+
+
+
+
+
