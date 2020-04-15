@@ -1,17 +1,3 @@
-If Upgrade MacOS from Sierra to Mojave
-Or windows 7 to Windows 10
-Backwards Compatiability
-
-Virtual Environment
-- Library on Specific Version
-
-Model - Build Database
-View - Call from Database and Use which HTML File
-Template - Show what we want the user to see
-
-MVT
-
-
 Review
 1. Create Virtual Environment
 2. Activate the Virtual Environment
@@ -31,18 +17,85 @@ Project is the foundation/base/the ground floor of what all the applications sit
 
 django-admin startproject firstproject
 
-What is an application - The actual user interaction component, data is defined and stored from here
-What we want the users to see in every one of our pages
-django-admin startapp firstapp
 
 Project Settings
 TEMPLATES_DIR
+STATICFILES_DIR
+ - CSS
+ - JS
+ - IMG
 
 INSTALLED_APPS
 
 urls.py
+path('', TemplateView.as_view(template_name='index.html'), name='index')
+
+Add HTML File locations to the Main Project
+TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
+
+Add CSS/JS/IMG/VID file location to the main project
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [STATIC_DIR,]
+
+Using DJANGO TEMPLATES TAGS for STATIC CONTENT and LINKS
+STATIC CONTENT
+{% static 'css/style.css' %}
+{% static 'js/main.js' %}
+
+URL Links
+{% url 'index' %} - Main Home Page
+{% url 'firstapp:index' %} - FirstApp Home Page
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 views.py
+
+
+What is an application - The actual user interaction component, data is defined and stored from here
+What we want the users to see in every one of our pages
+django-admin startapp firstapp
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Day 2
 Django App models and the database - DB Browser for SQL Lite

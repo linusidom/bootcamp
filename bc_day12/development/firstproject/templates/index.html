@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+<h1>This is inside the Block</h1>
+{% block content %}
+<h1>Hello World From Base Project</h1>
+<a href="{% url 'firstapp:index' %}">This is a Link to the FirstApp</a>
+<a href="{% url 'secondapp:index' %}">This is a Link to the Second App</a>
+{% endblock %}
+<h1>This is After the Block</h1>
