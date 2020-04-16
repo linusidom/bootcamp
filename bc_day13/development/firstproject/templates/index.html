@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<h1>Hello from First Project</h1>
+	<a href="{% url 'firstapp:index' %}">First App</a><br>		
+	<a href="{% url 'secondapp:index' %}">Second App</a><br>
+	<a href="{% url 'pantip_blog:index' %}">Blog</a><br>		
+	
+	
+{% endblock %}
