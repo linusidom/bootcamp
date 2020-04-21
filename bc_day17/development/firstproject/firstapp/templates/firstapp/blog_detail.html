@@ -1,0 +1,15 @@
+{% extends 'firstapp/base.html' %}
+{% block content %}
+    <h1>DetailView Page</h1>
+
+    <div class="card m-4">
+        <div class="card-header bg-dark text-white">
+            {{ blog.title }}
+        </div>
+        <div class="card-body">
+            {{blog.message}}
+            {{blog.author}}
+        </div>
+    </div>  
+        
+{% endblock %}

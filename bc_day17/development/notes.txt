@@ -1,0 +1,221 @@
+Review
+===================
+1. Create Virtual Environment
+2. Activate the Virtual Environment
+3. Install Django
+4. Create Django Project
+5. Makemigrations - Prepare database
+6. Migrate - Setup Database
+7. Runserver
+
+django-admin startproject firstproject
+
+Project Settings
+SETTINGS.py
+==================
+Add HTML File locations to the Main Project
+TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
+Inlclude the TEMPLATES_DIR in the TEMPLATES DIR setting
+
+Add CSS/JS/IMG/VID file location to the main project
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [STATIC_DIR,]
+
+
+URLS.py
+=================
+path('', TemplateView.as_view(template_name='index.html'), name='index')
+
+
+HTML TEMPLATES
+==================
+templates/index.html
+templates/base.html
+
+{% static 'css/style.css' %}
+{% static 'js/main.js' %}
+
+
+ADD APPLICATION
+
+PROJECT SETTINGS.py
+====================
+INSTALLED_APPS = [
+	'firstapp',
+	'secondapp',
+]
+
+PROJECT URLS.py
+=================
+path('firstapp', include('firstapp.urls',namespace='firstapp'))
+path('secondapp', include('secondapp.urls',namespace='secondapp'))
+
+PROJECT TEMPLATE TAGS
+==================
+URL Links
+{% url 'index' %} - Main Home Page
+{% url 'firstapp:index' %} - FirstApp Home Page
+{% url 'secondapp:index' %} - SecondApp Home Page
+
+
+
+DATABASE Commands
+=================
+.table
+.headers on
+.mode column
+
+
+
+
+
+
+
+
+
+
+Day 2
+==================
+Django App models and the database - DB Browser for SQL Lite
+Create a Model and add it to the Database - Introduce the Admin Page
+Create entries and remove them, explore how the Database looks
+null - true/false
+pip install django-extensions pygraphviz
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Day 3
+==================
+URL Mappings and Function Based Views vs Class Based Views
+
+To Build our Database we use Models
+- Models and Admin File
+
+To Direct customers/people to our HTML Pages we use URL's
+- URL's File
+
+To Display what we want people/customers to see we use Views
+- Views File
+Function Based and Class Based Views
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Day 4 - Views.py
+============================
+To add an App - Add it to the Project
+Settings INSTALLED FILES
+Settings URLS.PY
+
+To Build our Database we use Models
+- Models and Admin File
+
+To Direct customers/people to our HTML Pages we use URL's
+- URL's File
+
+To Display what we want people/customers to see we use Views
+- Views File
+Function Based and Class Based Views
+
+
+Day 5 - CRUD
+========================
+
+Create
+Create / Upload Data
+
+Retrieve
+Display Data
+
+UpdateView
+Update Data
+
+DeleteView
+Delete Data
+
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Day 5 - Template Tags
+Explain Base and HTML tags
+Include
+For Loops
+If / else
+Focus on ListView
+
+Day 6 - Forms
+
+Day 7 - API's
+
+Day 8 - DOM Manipulation
+
+
+
+
+
+
+
+
+
+
+

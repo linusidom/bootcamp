@@ -1,0 +1,13 @@
+{% extends 'firstapp/base.html' %}
+{% block content %}
+    <h1>DeleteView Page</h1>
+    
+    <form method='POST'>
+        {% csrf_token %}
+        <p class='lead'>Would you like to delete this Post {{object}}</p>
+        <input class='btn btn-info btn-danger' type="submit" value="Delete">
+        
+    </form>
+
+        
+{% endblock %}
