@@ -1,0 +1,30 @@
+body{
+	background: #3a3a63;
+}
+
+h1{
+	color: #fff;
+}
+
+.card-body, .navbar{
+	background: #2d2a49;
+	color: #fff;
+}
+
+.nav-item a{
+	color: #cbc7da;
+
+}
+
+.grid-3{
+	display: grid;
+	grid-gap: 3rem;
+	grid-template-columns: repeat(3, 1fr);
+}
+
+footer{
+	background: #2d2a49;
+	color: #cbc7da;
+	text-align: center;
+	padding: 2rem;
+}

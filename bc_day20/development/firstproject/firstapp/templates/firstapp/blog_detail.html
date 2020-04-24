@@ -1,0 +1,24 @@
+{% extends 'firstapp/base.html'  %}
+
+{% block content %}
+<h1>Blog Detail</h1>
+
+<div class="card">
+	<div class="card-header bg-dark text-white">
+		<a href="{% url 'firstapp:blog_detail' pk=blog.pk %}">{{blog.title}}</a>
+		<p>Primary Key {{blog.pk}}</p>
+	</div>
+	<div class="card-body">
+		{{blog.message}}
+		{{blog.author}}
+	</div>
+</div>
+	
+<div class="grid-3 m-4">
+	<a class='btn btn-primary'  href="{% url 'firstapp:blog_list' %}">See All the Posts</a>
+	<a class='btn btn-info' href="{% url 'firstapp:blog_update' pk=blog.pk %}">Update</a>
+	<a class='btn btn-danger' href="{% url 'firstapp:blog_delete' pk=blog.pk %}">Delete</a>
+</div>
+
+{% endblock %}
+
