@@ -1,27 +1,17 @@
 {% extends 'firstapp/base.html' %}
 {% block content %}
-<h1>Hello World from ListView</h1>
-
-<h3>{{sample_variable}}</h3>
-<p>Posts {{blog_list}}</p>
-
-
-
-{% for post in blog_list %}
-	<div class="card">
-		<div class="card-header bg-dark text-white">
-			<p>{{post.title}}</p>
-		</div>
-		<div class="card-body">
-			<p>{{post.message}}</p>
-			<p>{{post.author}}</p>			
-		</div>
-	</div>
-
-	
-
-
-{% endfor %}
-
-
+    <h1>ListView Page</h1>
+    {% for blog in blog_list %}
+        <div class="card m-4">
+            <div class="card-header bg-dark text-white">
+                {{ blog.title }}
+            </div>
+            <div class="card-body">
+                {{blog.message}}
+                {{blog.author}}
+            </div>
+        </div>  
+            
+    
+    {% endfor %}
 {% endblock %}

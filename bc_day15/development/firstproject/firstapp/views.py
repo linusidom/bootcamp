@@ -1,24 +1,47 @@
 from django.shortcuts import render
-from firstapp.models import Book
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 # Create your views here.
+from firstapp.models import Blog
 
-# def index_view(request):
-# 	books = Book.objects.all()
-# 	print('Type for Var \n', type(books))
 
-# 	context = {
-# 		'book_list': books
-# 	}
+"""
+Function Based Views
+- Offers More Flexibilty but have to code everything
+"""
+def list_view(request):
+	posts = Blog.objects.all()
+	context = {
+		'blog_list': posts,
+		'sample_variable': 'I am a extra variable from a function based view'
+	}
+	return render(request, 'firstapp/index.html', context)
 
-# 	print('\nbooks for Books \n', books)
 
-# 	for item in books:
-# 		print('\n Items \n', item)
+def detail_view(request, pk):
+	post = Blog.objects.get(pk=pk)
+	context = {
+		'blog': post,
+	}
+	return render(request, 'firstapp/blog_detail.html', context)
 
-# 	return render(request, 'firstapp/index.html', context)
+"""
+Class Based Views
+- Offers less flexibilty but more defaults so less coding
+"""
+class BlogListView(ListView):
+	model = Blog
 
-class BookListView(ListView):
-	model = Book
-	template_name = 'firstapp/index.html'
-	
+class BlogDetailView(DetailView):
+	model = Blog
+
+
+
+
+
+
+
+
+
+
+
+

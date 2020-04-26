@@ -9,19 +9,20 @@
         <!-- <link rel="stylesheet" href="style.css"> -->
     </head>
     <body>
-        <h1>Blog List</h1>
+        <h1>{{page_function}}</h1>
 		<div class="container">
-        {% for blog in blog_list %}
-			<div class="card">
-				<div class="card-header bg-dark text-white">
-					<p>{{blog.title}}</p>
-				</div>
-				<div class="card-body">
-					<p>{{blog.message}}</p>
-					<p>{{blog.author}}</p>
-				</div>
-			</div>
-        {% endfor %}
+        <!-- TO PUT DATA INTO A DATABASE -->
+        <!-- WE NEED A FORM -->
+        <!-- THE METHOD NEEDS TO BE A POST METHOD -->
+        <form method='POST'>
+            {% csrf_token %}
+            {% for field in form %}
+            <p>{{field.label}}</p>
+            <p>{{field}}</p>
+            {% endfor %}
+            <input type="submit" value="{{page_function}}">
+            
+        </form>
         </div>
     </body>
 <!--     <script src="main.js"></script>

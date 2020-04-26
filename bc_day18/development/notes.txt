@@ -202,6 +202,44 @@ DeleteView
 
 
 
+Day 8 - CreateView, UpdateView and Forms
+===================
+CreateView
+ - Fields
+ - Custom FormField
+
+UpdateView
+ - Fields
+ - Custom FormField
+
+DeleteView
+ - Object Delete
+
+widgets = {
+	'message': forms.Textarea(attrs={'placeholder': 'Enter your Name'})
+}
+
+widgets = {
+	'message': forms.TextInput(attrs={'placeholder': 'Enter your Name'})
+}
+
+def re_finder(text):
+	pattern = '\d+'
+	match = re.findall(pattern, text)
+	if match:
+		return True
+	return False
+
+	def clean_title(self):
+		data = self.cleaned_data['title']
+		if re_finder(data) == True:
+			raise forms.ValidationError("No numbers in the Title")
+		return data
+
+	def get_initial(self, *args, **kwargs):
+		initial = super(BlogUpdateView, self).get_initial(*args, **kwargs)
+		initial['title'] = 'This is from the initial Method'
+		return initial
 
 
 
@@ -209,25 +247,22 @@ DeleteView
 
 
 
-
-
-
-
-
-
-
-Day 5 - Template Tags
+Day 7 - Template Tags
+=========================
 Explain Base and HTML tags
-Include
 For Loops
 If / else
+Include
 Focus on ListView
 
-Day 6 - Forms
 
-Day 7 - API's
 
-Day 8 - DOM Manipulation
+
+
+
+Day 9 - API's
+
+Day 10 - DOM Manipulation
 
 
 

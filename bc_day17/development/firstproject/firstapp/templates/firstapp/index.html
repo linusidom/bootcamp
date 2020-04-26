@@ -5,11 +5,25 @@
         <meta name="description" content="Demo Project">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Document</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-      	<h1>Hello World</h1>
-        
+        <h1>Index Blog List</h1>
+        <div class="container">
+	        {% for blog in blog_list %}
+		   		<div class="card">
+		   			<div class="card-header bg-dark text-white">
+		   				<p>{{blog.title}}</p>
+		   			</div>
+		   			<div class="card-body">
+		   				<p class="lead">{{blog.message}}</p>
+		   				<p>{{blog.author}}</p>
+		   			</div>
+		   		</div>
+		   	{% endfor %}
+		</div>
     </body>
     <script src="main.js"></script>
 </html>

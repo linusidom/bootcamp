@@ -1,29 +1,17 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="description" content="Demo Project">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Document</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <!-- <link rel="stylesheet" href="style.css"> -->
-    </head>
-    <body>
-        <h1>{{page_function}}</h1>
-		<div class="container">
-        <!-- TO PUT DATA INTO A DATABASE -->
-        <!-- WE NEED A FORM -->
-        <!-- THE METHOD NEEDS TO BE A POST METHOD -->
-        <form method='POST'>
-            {% csrf_token %}
-            {% for field in form %}
-            <p>{{field.label}}</p>
-            <p>{{field}}</p>
-            {% endfor %}
-            <input type="submit" value="{{page_function}}">
-            
-        </form>
-        </div>
-    </body>
-<!--     <script src="main.js"></script>
- --></html>
+{% extends 'firstapp/base.html'  %}
+
+{% block content %}
+<h1>Blog Form</h1>
+
+	<form method='POST'>
+		{% csrf_token %}
+		{% for field in form %}
+		<p>{{field}}</p>
+		{% endfor %}
+		<input class='btn btn-block btn-info' type="submit" value='Create'>
+
+	</form>
+
+
+{% endblock %}
+

@@ -304,7 +304,27 @@ footer{
 	padding: 2rem;
 }
 
-Day 11 - Authentication Using allAuth
+
+
+
+
+
+Day 9 - ForeignKeys and Other Applications
+==================
+Adding Comments/ForeignKeys
+Referencing other applcations
+
+
+
+
+
+
+
+
+
+
+
+Day 10 - Authentication Using allAuth
 
 
 

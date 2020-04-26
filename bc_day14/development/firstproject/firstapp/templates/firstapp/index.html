@@ -1,0 +1,14 @@
+{% extends 'firstapp/base.html' %}
+{% block content %}
+<h1>First App</h1>
+
+<p>Book List from QuerySet {{book_list}}</p>
+
+{% for book in book_list %}
+<div class='card bg-dark text-white p-4 m-2'>
+	
+	<p>{{book.author}} is the Author of {{book.title}}</p>
+</div>
+{% endfor %}
+
+{% endblock %}

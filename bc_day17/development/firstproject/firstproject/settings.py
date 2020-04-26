@@ -16,12 +16,11 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'k+^%zb@_w8eh)f-)czmzg%jhhqip3=6=nyu=!ky^)2i@k$8q(_'
+SECRET_KEY = '0g#o@+6*8^1c2698t2qx_rnsflngbj%8rkozy%q$1=qmemj*xu'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

@@ -1,11 +1,11 @@
-from django.urls import path, re_path
-from django.views.generic import TemplateView
+from django.urls import path
 from firstapp import views
 
 app_name = 'firstapp'
 
 urlpatterns = [
-    # path('', TemplateView.as_view(template_name='firstapp/index.html')),
-    # path('', views.index_view)
-    path('list', views.BookListView.as_view(), name='list')
+    path('index', views.list_view),
+    path('list', views.BlogListView.as_view()),
+    path('detail/<int:pk>', views.BlogDetailView.as_view()),
+    path('detail_function_based_view/<int:pk>', views.detail_view),
 ]

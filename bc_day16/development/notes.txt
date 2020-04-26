@@ -74,40 +74,8 @@ DATABASE Commands
 
 
 
-
-
-
-views.py
-
-
-What is an application - The actual user interaction component, data is defined and stored from here
-What we want the users to see in every one of our pages
-django-admin startapp firstapp
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Day 2
+==================
 Django App models and the database - DB Browser for SQL Lite
 Create a Model and add it to the Database - Introduce the Admin Page
 Create entries and remove them, explore how the Database looks
@@ -136,7 +104,9 @@ pip install django-extensions pygraphviz
 
 
 
-Day 3 - URL Mappings and Function Based Views vs Class Based Views
+Day 3
+==================
+URL Mappings and Function Based Views vs Class Based Views
 
 To Build our Database we use Models
 - Models and Admin File
@@ -168,8 +138,8 @@ Function Based and Class Based Views
 
 
 
-Day 4 - CRUD
-
+Day 4 - Views.py
+============================
 To add an App - Add it to the Project
 Settings INSTALLED FILES
 Settings URLS.PY
@@ -184,6 +154,9 @@ To Display what we want people/customers to see we use Views
 - Views File
 Function Based and Class Based Views
 
+
+Day 5 - CRUD
+========================
 
 Create
 Create / Upload Data

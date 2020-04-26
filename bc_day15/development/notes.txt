@@ -169,9 +169,59 @@ Function Based and Class Based Views
 
 
 Day 4 - CRUD
-ListView DetailView
-UpdateView CreateView
+
+To add an App - Add it to the Project
+Settings INSTALLED FILES
+Settings URLS.PY
+
+To Build our Database we use Models
+- Models and Admin File
+
+To Direct customers/people to our HTML Pages we use URL's
+- URL's File
+
+To Display what we want people/customers to see we use Views
+- Views File
+Function Based and Class Based Views
+
+
+Create
+Create / Upload Data
+
+Retrieve
+Display Data
+
+UpdateView
+Update Data
+
 DeleteView
+Delete Data
+
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Day 5 - Template Tags
 Explain Base and HTML tags

@@ -176,8 +176,28 @@ Delete Data
 
 
 
+Day 6
+==========
+
+What is an ORM
+Object Relational Mapper
+
+Dive into ListView
+- Analyze the different Methods Available
+	queryset, context
 
 
+Dive into DetailView
+- Analyze the different Methods Available
+	queryset, context
+CreateView
+- Analyze the different Methods Available
+	queryset, context
+UpdateView
+- Analyze the different Methods Available
+
+DeleteView
+- Analyze the different Methods Available
 
 
 

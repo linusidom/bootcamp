@@ -15,6 +15,7 @@ SETTINGS.py
 ==================
 Add HTML File locations to the Main Project
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
+Inlclude the TEMPLATES_DIR in the TEMPLATES DIR setting
 
 Add CSS/JS/IMG/VID file location to the main project
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
@@ -58,7 +59,11 @@ URL Links
 
 
 
-
+DATABASE Commands
+=================
+.table
+.headers on
+.mode column
 
 
 
@@ -113,7 +118,51 @@ pip install django-extensions pygraphviz
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Day 3 - URL Mappings and Function Based Views vs Class Based Views
+
+To Build our Database we use Models
+- Models and Admin File
+
+To Direct customers/people to our HTML Pages we use URL's
+- URL's File
+
+To Display what we want people/customers to see we use Views
+- Views File
+Function Based and Class Based Views
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

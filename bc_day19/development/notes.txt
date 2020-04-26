@@ -202,7 +202,7 @@ DeleteView
 
 
 
-Day 8 - CreateView, UpdateView and Forms
+Day 7 - CreateView, UpdateView and Forms
 ===================
 CreateView
  - Fields
@@ -247,16 +247,64 @@ def re_finder(text):
 
 
 
-Day 7 - Template Tags
+Day 8 - Template Tags
 =========================
+TEMPLATE TAGS
+STATIC FILES
+IMAGES
+Eye Dropper Tool for Chrome
+
 Explain Base and HTML tags
-For Loops
+
 If / else
-Include
-Focus on ListView
+For Loops
+
+Integrate a new feature
 
 
+def search_query(request):
+	query = request.GET.get('search_query')
+	print(query)
+	context = {	
+		'blog_list': Blog.objects.filter(title__icontains=query)
+	}
+	print(context)
 
+	return render(request, 'firstapp/blog_list.html', context)
+
+CSS style Sheet
+body{
+	background: #3a3a63;
+}
+
+h1{
+	color: #fff;
+}
+
+.card-body, .navbar{
+	background: #2d2a49;
+	color: #fff;
+}
+
+.nav-item a{
+	color: #cbc7da;
+
+}
+
+.grid-3{
+	display: grid;
+	grid-gap: 3rem;
+	grid-template-columns: repeat(3, 1fr);
+}
+
+footer{
+	background: #2d2a49;
+	color: #cbc7da;
+	text-align: center;
+	padding: 2rem;
+}
+
+Day 11 - Authentication Using allAuth
 
 
 

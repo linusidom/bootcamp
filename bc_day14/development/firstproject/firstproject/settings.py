@@ -16,13 +16,13 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = [STATIC_DIR,]
 
+STATICFILES_DIRS = [STATIC_DIR,]
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '&(gq=#7mmb0ffgeir#cp=iv)lo#(4filxx!4=#1&ewh3bqz!v6'
+SECRET_KEY = '$=dam_c@sdt6-9od*gc8ywegpy1y*o5u2zb(9!p44lj#3c&qqz'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
