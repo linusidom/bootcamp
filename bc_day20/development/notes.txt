@@ -314,7 +314,13 @@ Day 9 - ForeignKeys and Other Applications
 Adding Comments/ForeignKeys
 Referencing other applcations
 
+Primary Key	
+Unique identifier for each row in a table
 
+Each table must have a primary key for each row, if we don’t define on, one will be automatically generated (django does an auto-incrementing auto-assign primary key pk)
+
+Foreign Key	
+Denotes that the column coincides with a primary key of another table
 
 
 

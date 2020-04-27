@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="Demo Project">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Document</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <h1>Post Detail</h1>
+        <div class="container">
+			<div class="card">
+				<div class="card-header bg-dark text-white">
+					<p>{{post.title}}</p>
+				</div>
+				<div class="card-body">
+					<p class='lead'>{{post.message}}</p>
+					<p>{{post.author}}</p>
+					<p>Comments {{post.comment_set.count}}</p>
+				</div>
+			</div>
+			<hr>
+			<div class="m-4">
+				<a class='btn btn-info' href="{% url 'comments:comment_create' pk=post.pk %}">Add A comment</a>
+			</div>
+			<table class="table table-striped table-hover table-dark">
+				<thead>
+					<th width='25%'>Author</th>
+					<th width='25%'>Message</th>
+					<th width='25%'></th>
+					<th width='25%'></th>
+				</thead>
+				<tbody>
+					{% for comment in post.comment_set.all %}
+					<tr>
+						<td>{{comment.author}}</td>
+						<td>{{comment.message}}</td>
+						<td><a class='btn btn-info' href="{% url 'comments:comment_update' pk=comment.pk %}">Update</a></td>
+						<td><a class='btn btn-danger' href="{% url 'comments:comment_delete' pk=comment.pk %}">Delete</a></td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+    </body>
+    <script src="main.js"></script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
