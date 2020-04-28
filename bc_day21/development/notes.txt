@@ -328,6 +328,46 @@ Denotes that the column coincides with a primary key of another table
 
 
 
+Day 10 - Function Based Views Explained
+============
+list_view
+ render, reverse, redirect, reverse_lazy
+detail_view
+
+create_view
+
+update_view
+
+delete_view
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 Day 10 - Authentication Using allAuth
