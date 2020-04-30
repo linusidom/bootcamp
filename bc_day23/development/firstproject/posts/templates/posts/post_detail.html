@@ -1,0 +1,24 @@
+{% extends 'posts/base.html' %}
+
+{% block content %}
+
+<h1>Post Detail</h1>
+
+
+<div class="card">
+	<div class="card-header">
+		<a href="{% url 'posts:post_detail' pk=post.pk %}">
+		<p>{{post.title}}</p></a>
+		<p>{{post.user.username}}</p>
+	</div>
+	<div class="card-body">
+		<p>{{post.message}}</p>
+	</div>
+</div>
+
+{% if post.user == user %}
+<a href="{% url 'posts:post_update' pk=post.pk %}" class='btn btn-info'>Update</a>
+<a href="{% url 'posts:post_delete' pk=post.pk %}" class='btn btn-danger'>Delete</a>
+{% endif %}
+
+{% endblock %}
