@@ -1,0 +1,457 @@
+Review
+===================
+1. Create Virtual Environment
+2. Activate the Virtual Environment
+3. Install Django
+4. Create Django Project
+5. Makemigrations - Prepare database
+6. Migrate - Setup Database
+7. Runserver
+
+django-admin startproject firstproject
+
+Project Settings
+SETTINGS.py
+==================
+Add HTML File locations to the Main Project
+TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
+Inlclude the TEMPLATES_DIR in the TEMPLATES DIR setting
+
+Add CSS/JS/IMG/VID file location to the main project
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [STATIC_DIR,]
+
+
+URLS.py
+=================
+path('', TemplateView.as_view(template_name='index.html'), name='index')
+
+
+HTML TEMPLATES
+==================
+templates/index.html
+templates/base.html
+
+{% static 'css/style.css' %}
+{% static 'js/main.js' %}
+
+
+ADD APPLICATION
+
+PROJECT SETTINGS.py
+====================
+INSTALLED_APPS = [
+	'firstapp',
+	'secondapp',
+]
+
+PROJECT URLS.py
+=================
+path('firstapp', include('firstapp.urls',namespace='firstapp'))
+path('secondapp', include('secondapp.urls',namespace='secondapp'))
+
+PROJECT TEMPLATE TAGS
+==================
+URL Links
+{% url 'index' %} - Main Home Page
+{% url 'firstapp:index' %} - FirstApp Home Page
+{% url 'secondapp:index' %} - SecondApp Home Page
+
+
+
+DATABASE Commands
+=================
+.table
+.headers on
+.mode column
+
+
+
+
+
+
+
+
+
+
+Day 2
+==================
+Django App models and the database - DB Browser for SQL Lite
+Create a Model and add it to the Database - Introduce the Admin Page
+Create entries and remove them, explore how the Database looks
+null - true/false
+pip install django-extensions pygraphviz
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Day 3
+==================
+URL Mappings and Function Based Views vs Class Based Views
+
+To Build our Database we use Models
+- Models and Admin File
+
+To Direct customers/people to our HTML Pages we use URL's
+- URL's File
+
+To Display what we want people/customers to see we use Views
+- Views File
+Function Based and Class Based Views
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Day 4 - Views.py
+============================
+To add an App - Add it to the Project
+Settings INSTALLED FILES
+Settings URLS.PY
+
+To Build our Database we use Models
+- Models and Admin File
+
+To Direct customers/people to our HTML Pages we use URL's
+- URL's File
+
+To Display what we want people/customers to see we use Views
+- Views File
+Function Based and Class Based Views
+
+
+Day 5 - CRUD
+========================
+
+Create
+Create / Upload Data
+
+Retrieve
+Display Data
+
+UpdateView
+Update Data
+
+DeleteView
+Delete Data
+
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+
+
+Day 6
+==========
+
+What is an ORM
+Object Relational Mapper
+
+Dive into ListView
+- Analyze the different Methods Available
+	queryset, context
+
+
+Dive into DetailView
+- Analyze the different Methods Available
+	queryset, context
+CreateView
+- Analyze the different Methods Available
+	queryset, context
+UpdateView
+- Analyze the different Methods Available
+
+DeleteView
+- Analyze the different Methods Available
+
+
+
+
+Day 7 - CreateView, UpdateView and Forms
+===================
+CreateView
+ - Fields
+ - Custom FormField
+
+UpdateView
+ - Fields
+ - Custom FormField
+
+DeleteView
+ - Object Delete
+
+widgets = {
+	'message': forms.Textarea(attrs={'placeholder': 'Enter your Name'})
+}
+
+widgets = {
+	'message': forms.TextInput(attrs={'placeholder': 'Enter your Name'})
+}
+
+def re_finder(text):
+	pattern = '\d+'
+	match = re.findall(pattern, text)
+	if match:
+		return True
+	return False
+
+	def clean_title(self):
+		data = self.cleaned_data['title']
+		if re_finder(data) == True:
+			raise forms.ValidationError("No numbers in the Title")
+		return data
+
+	def get_initial(self, *args, **kwargs):
+		initial = super(BlogUpdateView, self).get_initial(*args, **kwargs)
+		initial['title'] = 'This is from the initial Method'
+		return initial
+
+
+
+
+
+
+
+Day 8 - Template Tags
+=========================
+TEMPLATE TAGS
+STATIC FILES
+IMAGES
+Eye Dropper Tool for Chrome
+
+Explain Base and HTML tags
+
+If / else
+For Loops
+
+Integrate a new feature
+
+
+def search_query(request):
+	query = request.GET.get('search_query')
+	print(query)
+	context = {	
+		'blog_list': Blog.objects.filter(title__icontains=query)
+	}
+	print(context)
+
+	return render(request, 'firstapp/blog_list.html', context)
+
+CSS style Sheet
+body{
+	background: #3a3a63;
+}
+
+h1{
+	color: #fff;
+}
+
+.card-body, .navbar{
+	background: #2d2a49;
+	color: #fff;
+}
+
+.nav-item a{
+	color: #cbc7da;
+
+}
+
+.grid-3{
+	display: grid;
+	grid-gap: 3rem;
+	grid-template-columns: repeat(3, 1fr);
+}
+
+footer{
+	background: #2d2a49;
+	color: #cbc7da;
+	text-align: center;
+	padding: 2rem;
+}
+
+
+
+
+
+
+Day 9 - ForeignKeys and Other Applications
+==================
+Adding Comments/ForeignKeys
+Referencing other applcations
+
+Primary Key	
+Unique identifier for each row in a table
+
+Each table must have a primary key for each row, if we don’t define on, one will be automatically generated (django does an auto-incrementing auto-assign primary key pk)
+
+Foreign Key	
+Denotes that the column coincides with a primary key of another table
+
+
+
+
+
+
+
+Day 10 - Function Based Views Explained
+============
+list_view
+ render, reverse, redirect, reverse_lazy
+detail_view
+
+create_view
+
+update_view
+
+delete_view
+
+
+
+
+
+
+
+
+
+
+
+
+Day 10 - Authentication Using allAuth
+=====================================
+Using Django's allauth plugin we look at how authentication works
+How to protect data from being modified
+How to control access to different parts
+And the built in user authentication mechanisms already in place
+
+
+
+
+
+
+
+Day 11
+========================
+Facebook Login and Customizing The Login Pages
+
+Build out Basic Posts App
+
+Add allauth
+
+Add Navbar with Signup Login Logout
+
+Test
+
+Create Facebook App
+
+Create Social Auth App
+
+Change Site
+
+Add LOGIN_REDIRECT_URL
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Day 12 - API's
+=================
+
+What is an API and why do I care?
+
+As a Web Developer you may not care about API's, but as a person who serves Data you should care about API's.  The normal way to access data is through a website.  This requires people to open a browser and click to where they want to see the data.  This involves loading the webpage, waiting for the data, seeing the data in the format tha you wanted to present it in.  However what if I didn't want to wait, what if I just wanted the data and I want the data in the format that I like to see it.  Wouldn't you want to offer that flexibility?
+
+But wouldn't I lose customer?  No, they're still using your services.  The Web application is just a pretty front end to show the data, that's all.
+
+An API gives them direct access to the raw data behind the web application, the Database Data Directly.
+
+Do I need an API, no, but you should think about having one and as a developer understanding how it fits in your application.
+
+Things that API's can, basically everything your web application already does but in API's allows for automating the tasks.  If you have a signup/login, API's can make onboarding easier with a few command line arguments.
+
+If you have private data, API's make it easier to get and change the data while keeping it all on your server.
+
+API's don't change any functionality that you don't want to.
+
+API isn't a protocol but an idea, an abstract idea to exchange information.  The requests and responses rely on http/https and therefore follow the same status codes
+
+GET/PUT/DELETE - 200 OK/404 Not Found
+POST/CREATE - 201 created
+
+Most commonly API's allows other platforms (JavaScript, Ruby, C, etc) to interact with our application and data such as Containers.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Day 10 - DOM Manipulation
+
+
+
+
+
+
+
+
+
+
+
