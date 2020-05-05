@@ -498,7 +498,9 @@ def perform_destroy(self, request, *args, **kwargs):
 Permission:
 permission_classes = [IsAuthenticated]
 
+API - Business2Business
 
+Web Application - B2Customer
 
 
 
