@@ -1,0 +1,55 @@
+{% extends 'posts/base.html' %}
+{% block content %}
+
+<div class="grid-2">
+	<div class="m-4">
+		<div class="card bg-success">
+			<h3>Total Posts</h3>
+			<p>{{posts}}</p>
+		</div>	
+	</div>
+	<div class="m-4">
+		<div class="card bg-primary">
+			<h3>Total Comments</h3>
+			<p>{{comments}}</p>
+		</div>	
+	</div>
+</div>
+
+{% if users %}
+<div class="m-4">
+	<ul class="list-group">
+		<h3>Users</h3>
+		{% for user in users %}
+		<li class="list-group-item">{{user}}</li>
+		{% endfor %}
+	</ul>
+</div>
+{% endif %}
+
+{% for group in user.groups.all %}
+	{% if group.name == 'admins' %}
+	<div class="m-4">
+		<ul class="list-group">
+			<h3>Users</h3>
+			{% for user in users_in_template %}
+			<li class="list-group-item">{{user}}</li>
+			{% endfor %}
+		</ul>
+	</div>
+	{% endif %}
+{% endfor %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

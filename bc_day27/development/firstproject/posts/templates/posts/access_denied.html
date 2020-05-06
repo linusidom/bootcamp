@@ -1,0 +1,12 @@
+{% extends 'posts/base.html' %}
+{% block content %}
+
+<h3>You do not have access to view this page</h3>
+
+<h3>You currently have access to view only
+	{% for group in user.groups.all %}
+	{{group.name|title}}
+	{% endfor %}
+</h3>
+
+{% endblock %}
