@@ -1,0 +1,84 @@
+JavaScript is NOT the same as Java
+
+JavaScript is Based off of ECMA Script 
+(European Computer Manufacturers Association)
+
+Currently on it's 9th Version Or ECMAScript2018
+
+JavaScript is an interpreted Language that can run on practically any system or Browser
+
+Built into Browsers and can be used on the back end
+
+Growing in popularity due to being able to do both back end frontEnd with the same language stack
+
+FrontEnd - called by HTML File
+Back End - Can execute server side using Node.Js
+
+Popular Frameworks for JavaScript are React, Angular, Vue.Js
+
+Work much the same as Django
+
+
+Start with DOM Manipultion exercise then break down the concepts
+
+document.getElementById("demo").innerHTML = "Hello JavaScript";
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="Demo Project">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Document</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <script>
+    	function myFunction(){
+    		var div = document.getElementById('div')
+    		if (div.style.display === 'none'){
+    			div.style.display = 'block';
+    		}
+    		else{
+    			div.style.display = 'none';	
+    		}
+    	}
+    </script>
+    <body>
+        
+    <button onclick="myFunction()">Click Me</button>
+
+	<div id="div">
+	  <h3>This is my DIV element</h3>
+	</div>
+    
+</html>
+
+#div {
+	background: coral;
+	margin: 0 auto;
+	text-align: center;
+	padding: 50px;
+}
+
+Variable Declaration
+=========================
+const, let,var
+
+Common Variable Types
+========================
+Numbers, Strings, Lists, Dictionaries
+
+
+
+
+
+
+
+
+
+
+
+
+
+
