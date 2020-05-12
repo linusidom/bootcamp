@@ -1,0 +1,18 @@
+{% extends 'posts/base.html' %}
+{% block content %}
+
+<h1>Post Detail</h1>
+
+
+<div class="card post">
+	<div class="card-header">
+		<a href="{% url 'posts:post_detail' pk=post.pk %}"><p>{{post.title}}</p></a>
+		<p>Written By {{post.author}}</p>
+	</div>
+	<div class="card-body">
+		<p>{{post.message}}</p>
+		<button class='btn btn-danger jsDelete {{post.id}}'>Delete</button>
+	</div>
+</div>
+
+{% endblock %}
