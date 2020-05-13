@@ -1,0 +1,14 @@
+{% extends 'posts/base.html' %}
+{% load static %}
+{% block content %}
+
+<h1>Search Result</h1>
+
+
+{% for post in post_list %}
+  <p>Title {{post.title}}</p>
+  <p>message {{post.message}}</p>
+  <p>author {{post.author}}</p>
+{% endfor%}
+
+{% endblock %}
