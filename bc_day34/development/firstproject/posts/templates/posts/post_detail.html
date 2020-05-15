@@ -1,0 +1,25 @@
+{% extends 'posts/base.html' %}
+
+{% block content %}
+
+<h1>Post Detail</h1>
+
+<div class="card">
+	<div class="card-header">
+		<p>{{post.title}}</p>
+	</div>
+	<div class="card-body">
+		<p>Slug {{post.slug}}</p>
+		<p>{{post.message}}</p>
+		<p>{{post.author}}</p>
+		<p>{{post.image}}</p>
+		{% if post.image %}
+			<img src="{{post.image.url}}" alt="image">
+		{% endif %}
+	</div>
+</div>
+
+<a href="{% url 'posts:post_update' slug=post.slug %}" class="btn btn-info">Update</a>
+<a href="{% url 'posts:post_delete' slug=post.slug %}" class="btn btn-danger">Delete</a>
+
+{% endblock %}
