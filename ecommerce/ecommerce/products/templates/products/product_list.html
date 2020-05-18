@@ -1,0 +1,19 @@
+{% extends 'products/base.html' %}
+{% block content %}
+<h1>Product List</h1>
+
+<div class="grid">
+{% for product in product_list %}
+<div class="card product">
+	<div class="card-header">
+		<a href="{% url 'products:product_detail' pk=product.pk %}"><p>{{product.title}}</p></a>
+	</div>
+	<div class="card-body">
+		<p>{{product.price}}</p>
+		{% include 'carts/snippets/update_snippet.html' with object=product object_list=cart_obj.products.all %}
+	</div>
+</div>
+{% endfor %}
+</div>
+
+{% endblock %}

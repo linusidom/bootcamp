@@ -1,0 +1,27 @@
+{% extends 'carts/base.html' %}
+
+{% block content %}
+
+
+<table class="table">
+	<thead>
+		<th>Item</th>
+		<th></th>
+		<th>Price</th>
+	</thead>
+	{% for product in cart.products.all %}
+	<tr>
+		<td>{{product}}</td>
+		<td>{% include 'carts/snippets/update_snippet.html' with object=product object_list=cart.products.all %}</td>
+		<td>{{product.price}}</td>
+	</tr>
+	{% endfor %}
+	<tr>
+		<td></td>
+		<td></td>
+		<td>{{cart.total}}</td>
+	</tr>
+
+</table>
+<a href="{% url 'orders:checkout' %}" class="btn btn-success">Checkout</a>
+{% endblock %}

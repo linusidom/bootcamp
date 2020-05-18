@@ -1,0 +1,149 @@
+1. Build out my landing Page Skeleton for Post
+	Build out HTML
+		Main Page
+			Header with Image and Sticky Navbar
+			Section for Advertising
+			List of all posts most recent (maybe 50 posts)
+			with auto load at the end of the page (20 more with each scroll)
+		
+		Post Detail
+			Post Title
+			Tags for Post
+			Details for the Post (if Image, if video)
+			Follow Button
+			Like Button
+			Person who last Updated the Post Information to the Profile
+			Comments of the Post
+				- From the Comment App
+
+	Build Model
+		Post Model
+			Message
+			User
+			VideoLink
+			ImageFiles
+			Tags
+			Followers - FK User
+			Likes
+			timestamp_created
+			timestamp_updated
+			tags = ManyToManyField(Tags)
+
+			def __str__(self):
+				return self.title
+	Build Views
+		List and Detail (public)
+		 (if Logged In and Owner):
+		Create
+		Update
+		Delete
+
+	Build basic Functions (custom function for Follow)
+		Follow Function
+			Method for Querying Posts follower and emailing when updated
+
+			post_save signal
+				posts = Post.objects.filter(user=request.user)
+				followers = posts.follower_set.all()
+				for follower in followers:
+					Setup Email function for Followers
+		
+		Like Function (custom function for likes)
+			if the user likes the post add it to the user profile
+
+			If the user want to remove their like, remove it from the User Profile
+			if not like:
+				add like
+			if like:
+				remove like
+
+		Search Function (custom search fuction)
+			filter(Q(title__icontains=query)Q(tag__icontains=query))
+
+			if query is in title, tags
+			return query
+
+2. Tags - No specific Page needed but Can build it
+	HTML 
+		Tag List
+			List all the tags in a Grid Display
+			List out how many times each tag was used
+			Give a Follow option for the Tag as well
+			Auto Load on the Page as well
+		Tag Detail
+			All the Details about where the tag was used
+			Post List with Comment count
+			Filter each post by Tag and display each post with title, description and comment count and Author name/ID and last updated or created
+
+	class Tag(models.Model)
+		name = CharField
+
+
+3. User Profile
+	Likes = FK - Post
+	Followers_post
+	Follow_tag
+	follow_user
+
+4. Comment Page
+	Model
+		post FK
+		user FK
+		Message
+
+	Views:
+		List or Detail (depends)
+
+		If owner and logged in
+		Create
+		Update
+		Delete
+
+
+5. Advertisers
+	Self Registration as Advertiser
+	Specific Key or Code or login for advertisers
+	Pay for advertising within the app
+	Connect with Stripe Payment Processing
+
+	HTML
+		Advertising Landing Page
+		Upload Image
+		Pick pricing model (product)
+		Checkout
+		Pay
+
+	Adverstiser Model
+		user
+		image
+		status
+		active
+		timestamp
+		updated_timestamp
+
+	Views (if logged in and Owner)
+		List - all my advertisements
+		Detail - Specific Advertisement Look
+		Create - New ad
+		Update Ad
+		Delete Ad
+		Analytics For Ad
+			How many impressions (page loads)
+			How many clicks (track clicks/Javascript)
+		API for Ads for use with Javascript
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
