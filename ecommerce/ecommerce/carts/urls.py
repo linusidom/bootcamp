@@ -1,11 +1,11 @@
-from django.urls import path
+from django.urls import path, include
 from carts import views
 
 app_name = 'carts'
 
 urlpatterns = [
-	path('update/<int:pk>', views.cart_update, name='cart_update'),
-	path('detail/<int:pk>', views.CartDetailView.as_view(), name='cart_detail'),
-	# path('checkout', views.checkout_view, name='checkout_home'),
-	# path('', views.CartListView.as_view(), name='cart_list'),
+	path('', views.cart_home, name='cart_home'),
+	path('update/<slug:slug>', views.cart_update, name='cart_update'),
+	path('checkout', views.checkout, name='checkout'),
+	
 ]

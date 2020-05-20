@@ -1,7 +1,9 @@
 from django.contrib import admin
-from carts.models import Cart
+
 # Register your models here.
+from carts.models import Cart
 
 class CartAdmin(admin.ModelAdmin):
-	list_display = ['id', 'user','total']
+	list_display = ['id', 'total', 'user']
+
 admin.site.register(Cart, CartAdmin)

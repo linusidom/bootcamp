@@ -1,0 +1,6 @@
+<form method="POST" class="form" action="{% if guest_login %}{% url 'accounts:guest_login' %}{% else %}{% url 'accounts:user_login' %}{% endif %}">
+	{% csrf_token %}
+	<input type="hidden" name='next' value="{{next_url}}">
+	{{form.as_p}}
+	<input type="submit" value="Login">
+</form>

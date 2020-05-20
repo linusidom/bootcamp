@@ -1,19 +1,19 @@
-{% extends 'products/base.html' %}
+{% extends 'base.html' %}
+
 {% block content %}
-<h1>Product List</h1>
 
 <div class="grid">
-{% for product in product_list %}
-<div class="card product">
-	<div class="card-header">
-		<a href="{% url 'products:product_detail' pk=product.pk %}"><p>{{product.title}}</p></a>
-	</div>
-	<div class="card-body">
-		<p>{{product.price}}</p>
-		{% include 'carts/snippets/update_snippet.html' with object=product object_list=cart_obj.products.all %}
-	</div>
+	{% for product in product_list %}
+		<div class='card'>
+			<a href="{{product.get_absolute_url}}">{{product.title}}</a>
+			<p>{{product.price}}</p>
+			{% if product.image %}
+				<img width='50%' src="{{product.image.url}}" alt="">
+			{% endif %}
+			<p>{% include 'carts/snippets/update_cart.html' with object=product object_list=cart_obj.products.all next_url=request.build_absolute_uri %}</p>
+		</div>
+	{% endfor %}
 </div>
-{% endfor %}
-</div>
+
 
 {% endblock %}

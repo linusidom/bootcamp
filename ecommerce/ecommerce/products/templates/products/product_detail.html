@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="grid">
+	<div>
+		<a href="{{product.get_absolute_url}}">{{product.title}}</a>
+		<p>{{product.price}}</p>
+		{% if product.image %}
+			<img src="{{product.image.url}}" alt="">
+		{% endif %}
+		<p>Add To cart/ remove from cart</p>
+	</div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,13 @@
+
+<form action="{% url 'carts:cart_update' slug=object.slug %}" method="POST">
+	<input type="hidden" name='next' value="{{ next_url }}">
+	{% csrf_token %}
+
+	{% if object in object_list %}
+		<!-- If the product is in the cart we provide the option to remove it -->
+		<button class="btn btn-info">Remove?</button>
+	{% else %}
+		<!-- If the product is not in the cart we want the option to add it -->
+		<button class="btn btn-info">Add to Cart</button>
+	{% endif %}
+</form>

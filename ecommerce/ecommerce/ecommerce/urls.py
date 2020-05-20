@@ -15,14 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from ecommerce import views
+from django.conf.urls.static import static
+from ecommerce import views, settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('products/', include('products.urls', namespace='products')),
- 	path('carts/', include('carts.urls', namespace='carts')),
- 	path('orders/', include('orders.urls', namespace='orders')),
- 	# path('profiles/', include('profiles.urls', namespace='profiles')),
- 	path('accounts/', include('allauth.urls')),
-	path('', views.home_page, name='home')       
+    path('carts/', include('carts.urls', namespace='carts')),
+    path('accounts/', include('accounts.urls', namespace='accounts')),
+    path('addresses/', include('addresses.urls', namespace='addresses')),
+    path('', views.index, name='index'),
 ]
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

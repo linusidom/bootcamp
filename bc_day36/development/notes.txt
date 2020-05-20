@@ -1,0 +1,74 @@
+Ecommerce App
+========================
+
+Products App
+ - Create Products - Done
+ 	- How to add products? - Done
+ - Display Products - Done
+ - Upload Images (install Pillow) - Done
+
+	 If we want to Display Pages
+	 	- Build out Models is Optional but very necessary if we want to do anything Dynamic
+	 	- We need to Add Settings - INSTALLED APP
+	 	- We need to add it to Project URLS.py
+	 	- We need URLS.py
+	 	- We need Views.py
+	 	- We need Templates for each Page
+	 	
+ - Seach Functionality - Still to do
+ - Add Product to Cart - Still to do
+
+Cart App
+ - Keep track of Products user wants to Purchase
+ - Total amount + Tax
+
+
+
+Accounts App
+ - Logged in User or Guest User
+
+
+Orders App
+ - Keep track of the Total Cost and Shipping
+ - Specific Order ID for Tracking/Complaints
+ - Track which addresses are used, shipping/billing
+
+
+
+Billing Profile
+ - Ties all the Orders, Cart, Account information together
+ - Keeps History of the Addresses
+
+
+Addresses
+ - Shipping Address
+ - Billing Address
+ - Tied to the Billing Profile
+ - Order Profile
+
+
+JavaScript / API's for a Better UI
+ - Make the user experience smoother
+ - Introduce API (Django Rest Framework)
+ - Use the Fetch API call within JS Framework
+
+
+Payment Processing with External Services
+ - Stripe Payment Processing
+ - Handle Test Payments
+ - Do CC processing with Stripe API
+ - Keep history of Purchases linked with the Billing Profile
+
+
+Marketing with External Services
+ - Promotional Matrerial with MailChimp/Gmail
+ - Contact Form
+
+
+Analytics and Sales Reports
+ - Keep Track of Sales History
+ - Income by day/week/month/year
+
+
+
+Other Seller Portal
