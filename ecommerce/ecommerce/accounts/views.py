@@ -1,58 +1,38 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import get_user_model
-from django.contrib.auth import login, logout, authenticate
-from accounts.models import GuestEmail
-from accounts.forms import LoginForm, SignupForm, GuestForm
-# Create your views here.
+from django.contrib.auth import login, logout, authenticate, get_user_model
+from accounts.forms import LoginForm, SignupForm
 
 User = get_user_model()
 
+# Create your views here.
+
 def user_login(request):
-	form = LoginForm(request.POST or None)
-	context = {
-		'form':form
-	}
-	if form.is_valid():
-		username = form.cleaned_data['username']
-		password = form.cleaned_data['password']
-		user = authenticate(request, username=username, password=password)
-		if user:
-			if user.is_active:
+	if request.method == 'POST':
+		form = LoginForm(request.POST)
+		if form.is_valid():
+			username = form.cleaned_data.get('username')
+			password = form.cleaned_data.get('password')
+			user = authenticate(username=username, password=password)
+			if user:
 				login(request, user)
-				return redirect('products:product_list')
-	return render(request, 'accounts/login.html', context)
+				return redirect('index')
+	else:
+		form = LoginForm()
+	return render(request, 'accounts/user_login.html', {'form':form})
 
 def user_logout(request):
 	logout(request)
-	return redirect('accounts:user_login')
+	return redirect('index')
 
-def signup(request):
-	form = SignupForm(request.POST or None)
-	context = {
-		'form':form
-	}
-	if form.is_valid():
-		username = form.data.get('username')
-		password = form.data.get('password')
-		email = form.data.get('email')
-		user = User.objects.create(username=username, email=email, password=password)
-		if user:
-			login(request, user)
-			return redirect('products:product_list')
-	return render(request, 'accounts/signup.html', context)
-
-
-def guest_login(request):
-	next_get = request.GET.get('next')
-	next_post = request.POST.get('next')
-	redirect_to = next_get or next_post
-	form = GuestForm(request.POST or None)
-	context = {
-		'form':form
-	}
-	if form.is_valid():
-		email = form.data.get('email')
-		guest_user = GuestEmail.objects.create(email=email)
-		request.session['guest_email_id'] = guest_user.id
-		return redirect(redirect_to)
-	return render(request, 'accounts/signup.html', context)
+def user_signup(request):
+	if request.method == 'POST':
+		form = SignupForm(request.POST)
+		if form.is_valid():
+			username = form.cleaned_data.get('username')
+			password = form.cleaned_data.get('password')
+			print('User Pass', username, password)
+			user = User.objects.create_user(username=username, password=password)
+			return redirect('accounts:user_login')
+	else:
+		form = SignupForm()
+	return render(request, 'accounts/user_signup.html', {'form':form})

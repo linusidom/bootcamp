@@ -1,81 +1,39 @@
 from django import forms
-from django.contrib.auth import get_user_model
-
-# Create your views here.
+from django.contrib.auth import login, logout, authenticate, get_user_model
 
 User = get_user_model()
 
-class GuestForm(forms.Form):
-	email = forms.CharField(
-    label = "",
-    widget=forms.TextInput(attrs={'class': 'form-control',
-                                  'type': 'email',
-                                  'placeholder': 'Email address',
-                                  'required': 'true'}))
-
-
 class LoginForm(forms.Form):
-	username = forms.CharField(
-    label="", max_length=30, 
-    widget=forms.TextInput(attrs={'class': 'form-control',
-                            'required': 'true',
-                            'placeholder': 'Login'}))
+	username = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter Username'}))
+	password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder':'Enter Password'}))
 
-	password = forms.CharField(
-    label="",
-    widget=forms.PasswordInput(attrs={'class': 'form-control',
-                                      'required': 'true',
-                                      'placeholder':'Password'}))
-
-class SignupForm(forms.Form):
-	username = forms.CharField(
-	label = "",
-    max_length=30, 
-    widget=forms.TextInput(attrs={'class': 'form-control',
-                            'required': 'true',
-                            'placeholder': 'Username'}))
-	email = forms.CharField(
-    label = "",
-    widget=forms.TextInput(attrs={'class': 'form-control',
-                                  'type': 'email',
-                                  'placeholder': 'Email address',
-                                  'required': 'true'}))
-	password = forms.CharField(
-	label = "",
-	widget=forms.PasswordInput(attrs={'class': 'form-control',
-	                                      'required': 'true',
-	                                      'placeholder':'Enter Password'}))
-	password2 = forms.CharField(
-	label = "",
-	widget=forms.PasswordInput(attrs={'class': 'form-control',
-	                                      'type': 'password',
-	                                      'required': 'true',
-	                                      'placeholder':'Confirm Password'}))
-
-	def clean_username(self):
-		# cleaned_data = super(SignupForm, self).clean()
-		username = self.cleaned_data.get('username')
-		qs = User.objects.filter(username=username).exists()
-		if qs:
-			raise forms.ValidationError('Username already exists')
-		print(username)
+	def clean_username(self, *args, **kwargs):
+		cleaned_data = super(LoginForm, self).clean(*args, **kwargs)
+		username = cleaned_data.get('username')
+		password = cleaned_data.get('password')
+		user = authenticate(username=username, password=password)
+		print('authenticated', user)
+		if not user:
+			raise forms.ValidationError('Invalid Login')
 		return username
 
-	def clean_email(self):
-		email = self.cleaned_data.get('email')
-		qs = User.objects.filter(email=email).exists()
+class SignupForm(forms.Form):
+	username = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter Username'}))
+	password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder':'Enter Password'}))
+	password2 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder':'Enter Password'}))
+
+	def clean_username(self, *args, **kwargs):
+		cleaned_data = super(SignupForm, self).clean(*args, **kwargs)
+		username = cleaned_data.get('username')
+		qs = User.objects.filter(username=username).exists()
 		if qs:
-			raise forms.ValidationError('Email already exists')
-		print(email)
-		return email
+			raise forms.ValidationError('Username is Taken')
+		return username
 
-
-	def clean(self):
-		# cleaned_data = super(SignupForm, self).clean()
-		# cleaned_data = self.cleaned_data
-		password = self.cleaned_data.get('password')
-		password2 = self.cleaned_data.get('password2')
-		if password and password2 and password != password2:
-			raise forms.ValidationError('Passwords must match')
-		print(password)
-		return password
+	def clean(self, *args, **kwargs):
+		cleaned_data = super(SignupForm, self).clean(*args, **kwargs)
+		password2 = cleaned_data.get('password2')
+		password = cleaned_data.get('password')
+		if password != password2:
+			raise forms.ValidationError('Passwords Must Match!')
+		return cleaned_data
