@@ -21,4 +21,6 @@ urlpatterns = [
     path('', views.index_view, name='index'),
     path('loggedin', views.loggedin_view, name='loggedin'),
     path('accounts/', include('accounts.urls', namespace='accounts')),
+    path('products/', include('products.urls', namespace='products')),
+    path('carts/', include('carts.urls', namespace='carts')),
 ]

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content%}
+<link rel="stylesheet" href="{% static 'carts/css/style.css' %}">
+<h3>Checkout</h3>
+{{order_obj.order_id}} -- {{order_obj.cart}}
+<!-- We want to make sure we have -->
+
+<!-- Logged in User or Guest-->
+{% if not billing_profile %}
+<p>You don't have a Profile yet, lets go ahead and create one</p>
+
+<div class='grid'>
+	<!-- Login Form -->
+	<div>
+		{% url 'accounts:user_login' as user_login %}
+		{% include 'accounts/snippets/account_form.html' with next_url=request.build_absolute_uri action_url=user_login typeLogin=True form=loginForm %}
+	</div>
+	<!-- Guest Form -->
+	<div>
+		{% url 'accounts:user_guest' as user_guest %}
+		{% include 'accounts/snippets/account_form.html' with next_url=request.build_absolute_uri action_url=user_guest form=guestForm %}
+	</div>
+</div>
+{% else %}
+<!-- Shipping Address -->
+
+<!-- Billing Address -->
+
+<!-- Final Check if everything looks okay -->
+
+
+
+
+{% endif %}
+
+
+
+
+
+{% endblock %}

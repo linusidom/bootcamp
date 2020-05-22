@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content%}
+<link rel="stylesheet" href="{% static 'products/css/style.css' %}">
+<h3>Products</h3>
+
+<div class="grid">
+	{% for product in product_list %}
+		<div class="card">
+			<p>{{product.title}}</p>
+			<p>{{product.description}}</p>
+			<p>{{product.price}}</p>
+			{% include 'carts/snippets/update_form.html' %}
+		</div>
+	{% endfor %}
+</div>
+{% endblock %}

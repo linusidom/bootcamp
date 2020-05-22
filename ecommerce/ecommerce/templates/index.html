@@ -3,18 +3,5 @@
 {% block content%}
 <h3>Index</h3>
 
-{% if user.is_authenticated %}
-<p>Welcome {{user}}</p>
-
-{% else %}
-<!-- Login -->
-{% url 'accounts:user_login' as user_login %}
-{% include 'accounts/snippets/account_form.html' with form=loginForm next_url=request.build_absolute_uri typeLogin=True action_url=user_login %}
-
-<!-- Signup -->
-{% url 'accounts:user_signup' as user_signup %}
-{% include 'accounts/snippets/account_form.html' with form=signupForm next_url=request.build_absolute_uri typeLogin=True action_url=user_signup %}
-
-{% endif %}
 
 {% endblock %}
