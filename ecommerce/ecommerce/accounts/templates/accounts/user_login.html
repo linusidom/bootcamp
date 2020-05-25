@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
-
-{% block content%}
-<h3>Login</h3>
-
-<form method='POST' action="">
-	{% csrf_token %}
-	{{form.as_p}}
-	<input type="submit" value='Login'>
-</form>
+{% block content %}
+<h4>Login</h4>
+<div class="form-group">
+	<form action="{% url 'accounts:user_login' %}" method="POST">
+		{% csrf_token %}
+		{{form}}
+		<input class='btn btn-info form-control' type="submit" value="Login">
+	</form>
+</div>
 {% endblock %}

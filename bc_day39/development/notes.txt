@@ -1,0 +1,126 @@
+Ecommerce App
+========================
+
+Products App
+ - Create Products - Done
+ 	- How to add products? - Done
+ - Display Products - Done
+ - Upload Images (install Pillow) - Done
+
+	 If we want to Display Pages
+	 	- Build out Models is Optional but very necessary if we want to do anything Dynamic
+	 	- We need to Add Settings - INSTALLED APP
+	 	- We need to add it to Project URLS.py
+	 	- We need URLS.py
+	 	- We need Views.py
+	 	- We need Templates for each Page
+	 	
+ - Seach Functionality - Still to do
+ - Add Product to Cart - Still to do
+
+
+Accounts App
+=======================
+
+
+ - Basic Authentication with Default Django Parameters
+ - Logged in User or Guest User
+
+- Build Accounts app - Done
+ - Forms - Done
+  - Login / Signup - Guest
+ - Views
+  - Function based Views for login, logout, and signup and Guest - Done 
+ - Urls
+  - Project URLS for accounts all and Account urls to map to views - Done
+ - Templates
+  - Show the Form to the user Signup/Login- Done
+ - Build Links into Navbar
+  - show if user is authenticated or not login, logout, signup - Done
+ - Include on the Main index both login and guest - Done
+ 
+
+
+
+Cart App
+=========================
+ - Keep track of Products user wants to Purchase
+ - Total amount + Tax
+
+- Carts app to Project URLS and Settings
+ - Add app to URLS.py
+ - Add app to Settings INSTALLED_APPS
+
+ - Add Remove Items from our Cart
+  - create Cart Model
+  	- user
+  	- products
+  	- subtotal
+  	- total
+  	- active
+  	- updated
+  	- timestamp
+
+  - cart_update view
+  - cart_update URL
+  - Cart Home Page Templates
+
+
+Billing Profile
+ - Ties all the Orders, Cart, Account information together
+ - Keeps History of the Addresses
+
+user FK
+email
+active
+updated
+timestamp
+
+Post Save - User Created
+Create Billing Profile with Email
+ModelManager
+def new_or_get(self, request)
+return billing_object based on request parameters
+
+Orders App
+ - Keep track of the Total Cost and Shipping
+ - Specific Order ID for Tracking/Complaints
+ - Track which addresses are used, shipping/billing
+
+
+
+
+
+
+Addresses
+ - Shipping Address
+ - Billing Address
+ - Tied to the Billing Profile
+ - Order Profile
+
+
+JavaScript / API's for a Better UI
+ - Make the user experience smoother
+ - Introduce API (Django Rest Framework)
+ - Use the Fetch API call within JS Framework
+
+
+Payment Processing with External Services
+ - Stripe Payment Processing
+ - Handle Test Payments
+ - Do CC processing with Stripe API
+ - Keep history of Purchases linked with the Billing Profile
+
+
+Marketing with External Services
+ - Promotional Matrerial with MailChimp/Gmail
+ - Contact Form
+
+
+Analytics and Sales Reports
+ - Keep Track of Sales History
+ - Income by day/week/month/year
+
+
+
+Other Seller Portal

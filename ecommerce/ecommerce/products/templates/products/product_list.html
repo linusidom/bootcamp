@@ -1,17 +1,28 @@
 {% extends 'base.html' %}
-{% load static %}
-{% block content%}
-<link rel="stylesheet" href="{% static 'products/css/style.css' %}">
-<h3>Products</h3>
+{% block content %}
+<h4>Product Home</h4>
 
-<div class="grid">
-	{% for product in product_list %}
-		<div class="card">
-			<p>{{product.title}}</p>
-			<p>{{product.description}}</p>
-			<p>{{product.price}}</p>
-			{% include 'carts/snippets/update_form.html' %}
-		</div>
-	{% endfor %}
-</div>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<th>Item</th>
+		<th></th>
+		<th>Price</th>
+		<th>Total</th>
+	</thead>
+	<tbody>
+		{% for product in product_list %}
+		<tr>
+			<td>{{product.title}}</td>
+			<td>
+				{% url 'carts:cart_update' pk=product.pk as cart_update %}
+				{% include 'carts/snippets/cart_update.html' with action_url=cart_update next_url=request.build_absolute_uri object=product object_list=cart_obj.products.all %}
+			</td>
+			<td>{{product.price}}</td>
+			<td></td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
 {% endblock %}

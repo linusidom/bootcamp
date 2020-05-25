@@ -1,0 +1,12 @@
+
+<div class="form-group">
+	<form action="{{ action_url }}" method="POST">
+		{% csrf_token %}
+		<input type="hidden" name='next' value="{{ next_url }}">
+		{% if object in object_list %}
+			<button type="submit" class='btn btn-info'>Remove</button>
+		{% else %}
+			<button type="submit" class='btn btn-success'>Add</button>
+		{% endif %}
+	</form>
+</div>

@@ -15,12 +15,15 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [STATIC_DIR,]
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'p=3xd7m#tz_n&5-(p28y=8sf$0#9-xin10k^q53whg$rb#685k'
+SECRET_KEY = 'bw_juj2^*i4i1e*3rd+ep2l(f$&lw-b+o9c3n^5wtpdvilbm2+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -38,10 +41,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts',
-    'products',
-    'carts',
+    'addresses',
+    'analytics',
     'billing',
+    'carts',
     'orders',
+    'products',
 ]
 
 MIDDLEWARE = [

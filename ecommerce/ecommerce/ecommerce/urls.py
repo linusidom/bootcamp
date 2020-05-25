@@ -16,11 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from ecommerce import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index_view, name='index'),
-    path('loggedin', views.loggedin_view, name='loggedin'),
-    path('accounts/', include('accounts.urls', namespace='accounts')),
-    path('products/', include('products.urls', namespace='products')),
-    path('carts/', include('carts.urls', namespace='carts')),
+    path('accounts/',include('accounts.urls', namespace='accounts')),
+    path('addresses/',include('addresses.urls', namespace='addresses')),
+    path('carts/',include('carts.urls', namespace='carts')),
+    path('products/',include('products.urls', namespace='products')),
 ]

@@ -1,132 +1,77 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from products.models import Product
+from django.shortcuts import render, redirect
 from carts.models import Cart
+from products.models import Product
 from billing.models import BillingProfile
+from orders.models import Order
+from addresses.models import Address
+from addresses.forms import AddressForm
 from accounts.forms import LoginForm, GuestForm
 from accounts.models import GuestEmail
-from orders.models import Order
+
 # Create your views here.
+
 def cart_home(request):
-	# user = request.user
-	# cart_id = request.session.get('cart_id')
-	# if cart_id:
-	# 	qs = Cart.objects.get(id=cart_id)
-	# 	if qs:
-	# 		cart_obj = qs
-	# else:
-	# 	# Create a Cart
-	# 	if user.is_authenticated:
-	# 		cart_obj, created = Cart.objects.get_or_create(user=user)
-	# 		request.session['cart_id'] = cart_obj.id
-	# 	else:
-	# 		cart_obj = Cart.objects.create()
-	# 		request.session['cart_id'] = cart_obj.id
-	
 	cart_obj, created = Cart.objects.new_or_get(request)
 	context = {
 		'cart_obj':cart_obj
 	}
 	return render(request, 'carts/cart_home.html', context)
 
+
 def cart_update(request, pk):
-	# What if I want to re-use an existing cart?
-	# user = request.user
-	# cart_id = request.session.get('cart_id')
-	# if cart_id:
-	# 	qs = Cart.objects.get(id=cart_id)
-	# 	if qs:
-	# 		cart_obj = qs
-	# else:
-	# 	# Create a Cart
-	# 	if user.is_authenticated:
-	# 		cart_obj, created = Cart.objects.get_or_create(user=user)
-	# 		request.session['cart_id'] = cart_obj.id
-	# 	else:
-	# 		cart_obj = Cart.objects.create()
-	# 		request.session['cart_id'] = cart_obj.id
-
+	prod_obj = Product.objects.get(pk=pk)
+	next_get = request.GET.get('next')
+	next_post = request.POST.get('next')
+	redirect_to = next_get or next_post
 	cart_obj, created = Cart.objects.new_or_get(request)
-
-	# Now once we've gotten our Cart we can add the Product
-	# Get the Product
-	product_obj = get_object_or_404(Product, pk=pk) # Product.objects.get(pk=pk)
 	
-
-	# If the product is in the cart we want to remove it
-	# Or if not in the cart we want to add it
-	if product_obj in cart_obj.products.all():
-		cart_obj.products.remove(product_obj)
+	if prod_obj in cart_obj.products.all():
+		cart_obj.products.remove(prod_obj)
 	else:
-		cart_obj.products.add(product_obj)
-	product_list = Product.objects.all()
+		cart_obj.products.add(prod_obj)
 	request.session['cart_items'] = cart_obj.products.all().count()
-	
-	# We want to pass our cart ID back to the product page
-	# return redirect('products:product_list')
 	context = {
-		'cart_obj':cart_obj,
-		'product_list':product_list
+		'cart_obj':cart_obj
 	}
+	return redirect(redirect_to)
 
-	return render(request, 'products/product_list.html', context)
+def cart_checkout(request):
 
-
-
-
-
-def checkout(request):
-	billing_profile = None
-	login_form = LoginForm()
-	guest_form = GuestForm()
-	guest_email_id = request.session.get('guest_email_id')
-
-
-	cart_obj, created = Cart.objects.new_or_get(request)
-	user = request.user
-	# if not billing_profile:
-	if user.is_authenticated:
-		billing_profile = BillingProfile.objects.get(user=user)
-		print('Billing Profile',billing_profile)
-	elif guest_email_id is not None:
-		guestEmail = GuestEmail.objects.get(id=guest_email_id)
-		billing_profile, bill_created = BillingProfile.objects.get_or_create(email=guestEmail)
+	loginForm = LoginForm()
+	guestForm = GuestForm()
+	addressForm = AddressForm()
+	
+	cart_obj, cart_created = Cart.objects.new_or_get(request)
+	billing_profile, bill_created = BillingProfile.objects.new_or_get(request)
 
 	if billing_profile is not None:
-		# Create the order with the billing Profile and the cart
-		order_qs = Order.objects.filter(billing_profile=billing_profile, cart=cart_obj, active=True)
-		if order_qs.count() == 1:
-			order_obj = order_qs.first()
-		else:
-			older_order_qs = Order.objects.filter(billing_profile=billing_profile, cart=cart_obj, active=True)
-			if older_order_qs.exists():
-				older_order_qs.update(active=False)
-			order_obj = Order.objects.create(billing_profile=billing_profile, cart=cart_obj)
+		order_obj, order_created = Order.objects.new_or_get(billing_profile=billing_profile, cart_obj=cart_obj)
+
+	# if order_obj.check_done():
+	# 	return redirect('carts:cart_success')
 
 	context = {
-		'billing_profile': billing_profile,
-		'loginForm':login_form,
-		'guestForm':guest_form,
 		'order_obj':order_obj,
-
+		'loginForm': loginForm,
+		'guestForm': guestForm,
+		'addressForm':addressForm,
+		'billing_profile':billing_profile,
 	}
+	return render(request, 'carts/cart_checkout.html', context)
+ 
 
-	return render(request, 'carts/checkout.html', context)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+def cart_success(request):
+	cart_obj, cart_created = Cart.objects.new_or_get(request)
+	billing_profile, bill_created = BillingProfile.objects.new_or_get(request)
+	order_obj, order_created = Order.objects.new_or_get(billing_profile=billing_profile, cart_obj=cart_obj)
+	
+	is_done = order_obj.check_done()
+	if is_done:
+		order_obj.mark_paid()
+		del request.session['cart_id']
+		del request.session['cart_items']
+		context = {
+			'order_obj':order_obj
+		}
+		return render(request,'carts/cart_succes.html', context)
 

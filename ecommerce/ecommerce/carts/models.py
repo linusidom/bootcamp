@@ -1,10 +1,11 @@
 from django.db import models
-from django.contrib.auth import get_user_model
 from products.models import Product
+from billing.models import BillingProfile
 from django.db.models.signals import m2m_changed
-from decimal import Decimal
+from django.contrib.auth import get_user_model
 
 User = get_user_model()
+# Create your models here.
 
 class CartManager(models.Manager):
 	def new_or_get(self, request):
@@ -12,43 +13,43 @@ class CartManager(models.Manager):
 		user = request.user
 		cart_id = request.session.get('cart_id')
 		if cart_id:
-			qs = Cart.objects.get(id=cart_id)
+			qs = self.model.objects.filter(id=cart_id)
 			if qs:
-				cart_obj = qs
-				if user.is_authenticated and cart_obj.user is None:
+				cart_obj = qs.first()
+				if cart_obj.user is None:
 					cart_obj.user = user
 					cart_obj.save()
 		else:
-			# Create a Cart
 			if user.is_authenticated:
-				cart_obj, created = Cart.objects.get_or_create(user=user)
-				request.session['cart_id'] = cart_obj.id
+				cart_obj = self.model.objects.create(user=user)
 			else:
-				cart_obj = Cart.objects.create()
-				created = True
-				request.session['cart_id'] = cart_obj.id
+				cart_obj = self.model.objects.create()
+			request.session['cart_id'] = cart_obj.id
+			created = True
+		request.session['cart_items'] = cart_obj.products.all().count()
 		return cart_obj, created
 
-# Create your models here.
 class Cart(models.Model):
 	user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+	billing_profile = models.ForeignKey(BillingProfile, on_delete=models.SET_NULL, null=True, blank=True)
 	products = models.ManyToManyField(Product)
-	subtotal = models.DecimalField(max_digits=20, decimal_places=2, default=0)
-	total = models.DecimalField(max_digits=20, decimal_places=2, default=0)
-	updated = models.DateTimeField(auto_now=True)
+	total = models.DecimalField(max_digits=20, decimal_places=2, null=True, blank=True)
+	subtotal = models.DecimalField(max_digits=20, decimal_places=2, null=True, blank=True)
+	active = models.BooleanField(default=True)
 	timestamp = models.DateTimeField(auto_now_add=True)
+	updated = models.DateTimeField(auto_now=True)
 
 	objects = CartManager()
 
 	def __str__(self):
 		return str(self.id)
 
-def m2m_changed_cart_total(sender, instance, *args, **kwargs):
+def m2m_changed_product(sender, instance, *args, **kwargs):
 	prod_objs = instance.products.all()
 	total = 0
 	for prod in prod_objs:
 		total += prod.price
-	instance.total = total * Decimal(1.10)
+	instance.total = total
 	instance.save()
 
-m2m_changed.connect(m2m_changed_cart_total, sender=Cart.products.through)
+m2m_changed.connect(m2m_changed_product, sender=Cart.products.through)	

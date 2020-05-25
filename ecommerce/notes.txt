@@ -1,0 +1,143 @@
+Templates
+ - Bootstrap
+ - Navbar
+ - Links
+  -- Home
+  -- Products
+  -- Cart
+  -- Login
+  -- Logout
+  -- Singup
+
+Account
+ - Templates
+  - Login
+  - Signup
+  - Login_form.html
+ - urls.py - 4 URLS
+ - views.py
+  - user_login
+   - delete guest_email_id if exists (try)
+  - user_signup
+  - user_guest
+  - user_logout
+ - models
+  - GuestEmail
+ -forms
+  - LoginForm
+  - SignupForm
+  - GuestForm
+
+Addresses
+ - templates
+  - address_form
+  	- Old address
+  	- form
+  	- next_url
+  	- action_url
+ - views
+  - address_check
+   - need billing_profile, cart, and order
+  - address_update
+   - need billing_profile, cart, and order
+ - urls 2 URLS
+
+Billing
+ - Model
+  - user
+  - email
+  - active
+  - timestamp
+  - updated
+  -- Model Manager
+   - if billing_profile_id
+    - if user and not billing_profile.user
+   elif guest_email_id
+   
+   return billing_obj, created
+ - signal
+  - Post_save from User Signup
+   - Create Billing profile with user and email
+   - add to session
+
+Cart
+ - Templates
+  - cart_home.html
+  - cart_success.html
+  - checkout.html
+  - snippets/cart_update.html
+ - Model
+  - billing_profile
+  - user
+  - products
+  - active
+  - timestamp 
+  - updated
+  - total
+  - subtotal
+  - signals 
+   - m2m_changed for product total
+  -- Model Manager
+   - if cart_id in request
+   - else
+    - create cart
+    - add id to session
+    - add product count to session
+   - return cart_obj, created 
+ - Views
+  - cart_home
+   - Show products in cart
+  - cart_update
+  	- get product
+  	- check if product in cart or not
+  - checkout
+   - get cart, get billing object, get order
+   - do I have a shipping/billing address
+    - move to cart_success
+  - cart_success
+   - check if the there is a billing profile, billing/shipping address, total > 0
+   - mark_paid
+   - delete cart and cart_items for session
+ - URLS - 4
+
+Order
+ - Model
+  - billing_profile
+  - cart
+  - shipping/billing addresses
+  - shipping total
+  - total
+  - active
+  - timestamp
+  - updated
+  - order_id
+   - pre_save slug_gen
+  -- model manager
+   - billing profile and cart_obj
+   - get order if its created and active and only 1
+   - otherwise deactivate all others and
+   - create a new one
+   - return order_obj, created
+
+Products
+ - templates
+  - product_list
+  - product_detail
+ - views
+  - ProductList
+   - add cart_obj context
+  - ProductDetail
+   - add cart_obj context
+ - urls - 2
+ - model
+  - title
+  - description
+  - price
+  - slug
+   - pre_save unique_slug_gen
+  - active
+  - updated
+  - timestamps
+
+
+

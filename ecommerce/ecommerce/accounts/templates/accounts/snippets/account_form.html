@@ -1,10 +1,10 @@
-<form method='POST' action="{{ action_url }}">
-	{% csrf_token %}
-	<input type="hidden" name='next' value="{{ next_url }}">
-	{{form.as_p}}
-	{% if typeLogin %}
-		<input class='btn btn-info' type="submit" value='Login'>
-	{% else %}
-		<input class='btn btn-info' type="submit" value='Signup'>
-	{% endif %}
-</form>
+<h4>{% if guestPage %}Register Email{% elif loginPage %}Login{% else %}Register{% endif %}</h4>
+<div class="form-group">
+	<form action="{{ action_url }}" method="POST">
+		{% csrf_token %}
+		<input type="hidden" name='next' value="{{ next_url }}">
+		{{form}}
+		<input class='btn btn-info form-control' type="submit" value="
+		{% if guestPage %}Register Email{% elif loginPage %}Login{% else %}Register{% endif %}">
+	</form>
+</div>

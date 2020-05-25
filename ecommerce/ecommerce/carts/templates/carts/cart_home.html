@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
-
-{% block content%}
-<h3>Your Cart</h3>
+{% block content %}
+<h4>Cart Home</h4>
+<p>{{cart_obj.id}}</p>
 
 <table class="table table-striped table-hover">
 	<thead>
@@ -15,7 +15,8 @@
 		<tr>
 			<td>{{product.title}}</td>
 			<td>
-				{% include 'carts/snippets/update_form.html' %}
+				{% url 'carts:cart_update' pk=product.pk as cart_update %}
+				{% include 'carts/snippets/cart_update.html' with action_url=cart_update next_url=request.build_absolute_uri object=product object_list=cart_obj.products.all %}
 			</td>
 			<td>{{product.price}}</td>
 			<td></td>
@@ -29,10 +30,11 @@
 		</tr>
 	</tbody>
 </table>
-{% if cart_obj.products.all %}
-<a class="btn btn-primary" href="{% url 'carts:checkout' %}">Checkout</a>
+
+{% if cart_obj.total > 0 %}
+<a href="{% url 'carts:cart_checkout' %}" class="btn btn-primary">Checkout</a>
 {% else %}
-<a class="btn btn-primary" href="{% url 'products:product_list' %}">Cart is Empty - Go shopping!</a>
+<a href="{% url 'products:product_list' %}" class="btn btn-primary">Go Shopping</a>
 {% endif %}
 
 {% endblock %}

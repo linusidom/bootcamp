@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+<h4>Cart Home</h4>
+<p>{{order_obj.order_id}} -- {{cart_obj.id}} -- {{billing_profile.id}}</p>
+
+<p>Enter Your login or Email</p>
+<p>Enter your Shipping Address</p>
+<p>Enter your Billing address</p>
+
+
+<table class="table table-striped table-hover">
+	<thead>
+		<th>Item</th>
+		<th></th>
+		<th>Price</th>
+		<th>Total</th>
+	</thead>
+	<tbody>
+		{% for product in cart_obj.products.all %}
+		<tr>
+			<td>{{product.title}}</td>
+			<td>
+				{% url 'carts:cart_update' as cart_update %}
+				{% include 'carts/snippets/cart_update' with action_url=cart_update next_url=request.build_absolute_uri object=product object_list=cart_obj.products.all %}
+			</td>
+			<td>{{product.price}}</td>
+			<td></td>
+		</tr>
+		{% endfor %}
+		<tr>
+			<td>Total</td>
+			<td></td>
+			<td></td>
+			<td>{{cart_obj.total}}</td>
+		</tr>
+	</tbody>
+</table>
+
+
+<a href="{% url 'carts:cart_success' %}" class="btn btn-primary">Place Your order</a>
+
+
+{% endblock %}
