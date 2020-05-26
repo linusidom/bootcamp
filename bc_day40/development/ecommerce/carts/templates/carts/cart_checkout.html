@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block content %}
+<p>{{order_obj.order_id}} -- {{cart_obj.id}} -- {{billing_profile.id}}</p>
+
+{% if not billing_profile %}
+<p>We need to check if a Billing Profile is created or not</p>
+<div class="grid">
+	<div>
+		<!-- Login Form -->
+
+		<!-- Action should go to user_login view -->
+		{% url 'accounts:user_login' as user_login %}
+		<h5>Login Form</h5>
+		{% url 'carts:cart_checkout' as cart_checkout %}
+		{% include 'accounts/snippets/account_form.html' with form=loginForm action_url=user_login next_url=cart_checkout %}
+	</div>
+	<div>
+		<!-- Guest Registration -->
+
+		<!-- Action should go to user_guest view -->
+		{% url 'accounts:user_guest' as user_guest %}
+		{% url 'carts:cart_checkout' as cart_checkout %}
+		<h5>Guest Registration</h5>
+		{% include 'accounts/snippets/account_form.html' with form=guestForm action_url=user_guest next_url=cart_checkout %}
+
+	</div>
+	
+</div>
+
+
+{% else %}
+{{billing_profile.email}}
+<p>We need Shipping Address</p>
+<p>We need Billing Address</p>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<th>Item</th>
+		<th></th>
+		<th>Price</th>
+		<th>Total</th>
+	</thead>
+	<tbody>
+		{% for product in cart_obj.products.all %}
+		<tr>
+			<td>{{product.title}}</td>
+			<td>
+				{% include 'carts/snippets/cart_update.html' with next_url=request.build_absolute_uri %}
+			</td>
+			<td>{{product.price}}</td>
+			<td></td>
+		</tr>
+		{% endfor %}
+		<tr>
+			<td>Total</td>
+			<td></td>
+			<td></td>
+			<td>{{order_obj.total}}</td>
+		</tr>
+	</tbody>
+</table>
+
+{% endif %}
+
+{% endblock %}

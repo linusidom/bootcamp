@@ -1,13 +1,57 @@
 {% extends 'base.html' %}
 {% block content %}
 <h4>Cart Home</h4>
-<p>{{order_obj.order_id}} -- {{cart_obj.id}} -- {{billing_profile.id}}</p>
+<p>{{order_obj.order_id}} -- {{order_obj.cart.id}} -- {{billing_profile.id}}</p>
 
+{% if not billing_profile %}
 <p>Enter Your login or Email</p>
+
+<div class="grid">
+	<div>
+		{% url 'accounts:user_login' as user_login %}
+		{% include 'accounts/snippets/account_form.html' with next_url=request.build_absolute_uri action_url=user_login form=loginForm %}
+	</div>
+	<div>
+		{% url 'accounts:user_guest' as user_guest %}
+		{% include 'accounts/snippets/account_form.html' with next_url=request.build_absolute_uri action_url=user_guest form=guestForm %}
+	</div>
+</div>
+
+
+
+{% elif not order_obj.shipping_address%}
 <p>Enter your Shipping Address</p>
+
+<div class="grid">
+	<div>
+		{% url 'addresses:address_check' as address_check %}
+		{% include 'addresses/snippets/address_form.html' with next_url=request.build_absolute_uri action_url=address_check form=addressForm address_type='shipping' %}
+	</div>
+	
+	<div>
+		{% if old_addresses %}
+			{% url 'addresses:address_update' as address_update %}
+			{% include 'addresses/snippets/address_form.html' with next_url=request.build_absolute_uri action_url=address_update address_type='shipping' object_list=old_addresses %}
+		{% endif %}
+	</div>
+</div>
+
+{% elif not order_obj.billing_address%}
 <p>Enter your Billing address</p>
-
-
+<div class="grid">
+	<div>
+		{% url 'addresses:address_check' as address_check %}
+		{% include 'addresses/snippets/address_form.html' with next_url=request.build_absolute_uri action_url=address_check form=addressForm address_type='billing' %}
+	</div>
+	
+	<div>
+		{% if old_addresses %}
+			{% url 'addresses:address_update' as address_update %}
+			{% include 'addresses/snippets/address_form.html' with next_url=request.build_absolute_uri action_url=address_update address_type='billing' object_list=old_addresses %}
+		{% endif %}
+	</div>
+</div>
+{% else %}
 <table class="table table-striped table-hover">
 	<thead>
 		<th>Item</th>
@@ -16,12 +60,12 @@
 		<th>Total</th>
 	</thead>
 	<tbody>
-		{% for product in cart_obj.products.all %}
+		{% for product in order_obj.cart.products.all %}
 		<tr>
 			<td>{{product.title}}</td>
 			<td>
 				{% url 'carts:cart_update' as cart_update %}
-				{% include 'carts/snippets/cart_update' with action_url=cart_update next_url=request.build_absolute_uri object=product object_list=cart_obj.products.all %}
+				{% include 'carts/snippets/cart_update.html' with action_url=cart_update next_url=request.build_absolute_uri object=product object_list=cart_obj.products.all %}
 			</td>
 			<td>{{product.price}}</td>
 			<td></td>
@@ -31,13 +75,24 @@
 			<td>Total</td>
 			<td></td>
 			<td></td>
-			<td>{{cart_obj.total}}</td>
+			<td>{{order_obj.total}}</td>
 		</tr>
 	</tbody>
 </table>
 
+<div class="grid">
+	<div>
+		<h5>Shipping Address</h5>
+		<p>{{order_obj.shipping_address.get_address}}</p>
+	</div>
+	<div>
+		<h5>Billing Address</h5>
+		<p>{{order_obj.billing_address.get_address}}</p>
+	</div>
+</div>
 
 <a href="{% url 'carts:cart_success' %}" class="btn btn-primary">Place Your order</a>
 
+{% endif %}
 
 {% endblock %}

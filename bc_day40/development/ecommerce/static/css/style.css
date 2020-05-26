@@ -1,0 +1,6 @@
+.grid{
+	display: grid;
+	grid-gap: 2rem; /* 1 rem unit is 16 pixels and auto adjusts for the page*/
+	grid-template-columns: repeat(auto-fit, minmax(100px, 2fr));
+
+}

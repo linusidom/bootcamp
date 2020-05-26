@@ -1,10 +1,16 @@
-<h4>{% if shippingPage %}Enter Shipping Address{% else %}Enter Billing Address{% endif %}</h4>
 <div class="form-group">
 	<form action="{{ action_url }}" method="POST">
 		{% csrf_token %}
 		<input type="hidden" name='next' value="{{ next_url }}">
-		{{form}}
-		<input class='btn btn-info form-control' type="submit" value="Enter Address">
+		<input type="hidden" name='address_type' value="{{ address_type }}">
+		{% if object_list %}
+			{% for address in object_list %}
+				<input type="radio" name='address' value="{{address.id}}" id="address-{{address.id}}"> {{address}}<br>
+			{% endfor %}
+			<input class='btn btn-info form-control' type="submit" value="Use This one Instead">
+		{% else %}
+			{{form.as_p}}
+			<input class='btn btn-info form-control' type="submit" value="Enter Address">
+		{% endif %}
 	</form>
 </div>
-{% endblock %}

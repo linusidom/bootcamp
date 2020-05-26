@@ -13,7 +13,7 @@
 	<tbody>
 		{% for product in product_list %}
 		<tr>
-			<td>{{product.title}}</td>
+			<td><a href="{{product.get_absolute_url}}">{{product.title}}</a></td>
 			<td>
 				{% url 'carts:cart_update' pk=product.pk as cart_update %}
 				{% include 'carts/snippets/cart_update.html' with action_url=cart_update next_url=request.build_absolute_uri object=product object_list=cart_obj.products.all %}

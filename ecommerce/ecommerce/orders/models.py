@@ -26,10 +26,10 @@ class OrderManager(models.Manager):
 class Order(models.Model):
 	billing_profile = models.ForeignKey(BillingProfile, on_delete=models.SET_NULL, null=True, blank=True)
 	cart = models.ForeignKey(Cart, on_delete=models.SET_NULL, null=True, blank=True)
-	billing_address = models.ForeignKey(Address, on_delete=models.SET_NULL, null=True, blank=True, related_name='bill_add')
-	shipping_adress = models.ForeignKey(Address, on_delete=models.SET_NULL, null=True, blank=True, related_name='ship_add')
+	billing_address = models.ForeignKey(Address, on_delete=models.SET_NULL, null=True, blank=True, related_name='billing_address')
+	shipping_address = models.ForeignKey(Address, on_delete=models.SET_NULL, null=True, blank=True, related_name='shipping_address')
 	order_id = models.CharField(max_length=100, null=True, blank=True)
-	shipping = models.DecimalField(max_digits=20, decimal_places=2, null=True, blank=True)
+	shipping = models.DecimalField(max_digits=20, decimal_places=2, null=True, blank=True, default=60)
 	total = models.DecimalField(max_digits=20, decimal_places=2, null=True, blank=True)
 	active = models.BooleanField(default=True)
 	timestamp = models.DateTimeField(auto_now_add=True)
@@ -41,16 +41,24 @@ class Order(models.Model):
 		return self.order_id
 
 	def mark_paid(self):
-		pass
+		is_done = self.check_done()
+		if is_done:
+			self.status = 'paid'
+			self.save()
+			return True
+		return False
 
 	def check_done(self):
-		pass
+		if self.billing_profile and self.shipping_address and self.billing_address and self.total > 0:
+			return True
+		return False
 
 	def update_total(self):
 		cart_total = self.cart.total
-		shipping_total = self.shipping_total
-		new_total = cart_total + shipping_total
+		shipping = self.shipping
+		new_total = cart_total + shipping
 		self.total = new_total
+		# print('Update total from Order',self.total)
 		self.save()
 		return new_total
 
@@ -71,8 +79,10 @@ def post_save_update_total_cart(sender, instance, created, *args, **kwargs):
 post_save.connect(post_save_update_total_cart, sender=Cart)
 
 def post_save_update_total(sender, instance, created, *args, **kwargs):
+	# print('Post Save update total', created)
 	if created:
+		# print('Update Total Called')
 		instance.update_total()
-post_save.connect(post_save_update_total_cart, sender=Order)
+post_save.connect(post_save_update_total, sender=Order)
 
 

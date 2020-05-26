@@ -1,0 +1,8 @@
+<form action="{% url 'carts:cart_update' pk=product.pk %}">
+	<input type="hidden" name='next' value="{{next_url}}">
+	{% if product in cart_obj.products.all %}
+		<button class='btn btn-info'>Remove</button>
+	{% else %}
+		<button class='btn btn-primary'>Add To Cart</button>
+	{% endif %}
+</form>

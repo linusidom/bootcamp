@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if user.is_authenticated %}
+<h3>You made it!!</h3>
+{% else %}
+<!-- Login -->
+<div class="grid">
+	<div>
+		<!-- Login Form -->
+
+		<!-- Action should go to user_login view -->
+		{% url 'accounts:user_login' as user_login %}
+		<h5>Login Form</h5>
+		{% include 'accounts/snippets/account_form.html' with form=loginForm action_url=user_login %}
+	</div>
+	<div>
+		<!-- Guest Registration -->
+
+		<!-- Action should go to user_guest view -->
+		{% url 'accounts:user_guest' as user_guest %}
+		<h5>Guest Registration</h5>
+		{% include 'accounts/snippets/account_form.html' with form=guestForm action_url=user_guest %}
+
+	</div>
+	{{request.session.guest_email}}
+
+</div>
+
+
+
+{% endif %}
+
+{% endblock %}}

@@ -43,4 +43,4 @@ class BillingProfile(models.Model):
 	objects = BillingManager()
 
 	def __str__(self):
-		return self.email
+		return str(self.email)
