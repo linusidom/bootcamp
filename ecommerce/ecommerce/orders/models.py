@@ -71,7 +71,7 @@ pre_save.connect(pre_save_order_id, sender=Order)
 def post_save_update_total_cart(sender, instance, created, *args, **kwargs):
 	if not created:
 		cart_id = instance.id
-		qs = Order.objects.filter(id=cart_id)
+		qs = Order.objects.filter(id=cart_id, active=True)
 		if qs.count() == 1:
 			order_obj = qs.first()
 			order_obj.update_total()
@@ -84,5 +84,21 @@ def post_save_update_total(sender, instance, created, *args, **kwargs):
 		# print('Update Total Called')
 		instance.update_total()
 post_save.connect(post_save_update_total, sender=Order)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

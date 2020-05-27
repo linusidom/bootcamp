@@ -51,8 +51,8 @@ def cart_checkout(request):
 
 	if order_obj is not None:
 		old_addresses = Address.objects.filter(billing_profile=billing_profile)
-	# if order_obj.check_done():
-	# 	return redirect('carts:cart_success')
+	if order_obj.check_done():
+		return redirect('carts:cart_success')
 
 	context = {
 		'order_obj':order_obj,
@@ -72,11 +72,15 @@ def cart_success(request):
 	
 	is_done = order_obj.check_done()
 	if is_done:
-		order_obj.mark_paid()
-		del request.session['cart_id']
-		del request.session['cart_items']
-		context = {
-			'order_obj':order_obj
-		}
-		return render(request,'carts/cart_success.html', context)
+		did_charge, crg_msg = billing_profile.charge(billing_profile, order_obj)
+		print(did_charge, crg_msg)
+		if did_charge:
+			order_obj.mark_paid()
+			del request.session['cart_id']
+			del request.session['cart_items']
+			context = {
+				'order_obj':order_obj
+			}
+			return render(request,'carts/cart_success.html', context)
+		return redirect('carts:cart_checkout')
 	return redirect('carts:cart_checkout')
