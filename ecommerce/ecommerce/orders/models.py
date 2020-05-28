@@ -6,6 +6,12 @@ from addresses.models import Address
 from orders.utils import unique_order_gen
 # Create your models here.
 
+STATUS = (
+	('paid','Paid'),
+	('shipped','Shipped'),
+	('refunded','Refunded'),
+	)
+
 class OrderManager(models.Manager):
 	def new_or_get(self, billing_profile=None, cart_obj=None):
 		order_obj = None
@@ -29,6 +35,7 @@ class Order(models.Model):
 	billing_address = models.ForeignKey(Address, on_delete=models.SET_NULL, null=True, blank=True, related_name='billing_address')
 	shipping_address = models.ForeignKey(Address, on_delete=models.SET_NULL, null=True, blank=True, related_name='shipping_address')
 	order_id = models.CharField(max_length=100, null=True, blank=True)
+	status = models.CharField(max_length=100, null=True, blank=True, choices=STATUS)
 	shipping = models.DecimalField(max_digits=20, decimal_places=2, null=True, blank=True, default=60)
 	total = models.DecimalField(max_digits=20, decimal_places=2, null=True, blank=True)
 	active = models.BooleanField(default=True)
@@ -56,11 +63,14 @@ class Order(models.Model):
 	def update_total(self):
 		cart_total = self.cart.total
 		shipping = self.shipping
-		new_total = cart_total + shipping
+		new_total = 0
+		if cart_total is not None:
+			new_total = cart_total + shipping
 		self.total = new_total
 		# print('Update total from Order',self.total)
 		self.save()
 		return new_total
+
 
 def pre_save_order_id(sender, instance, *args, **kwargs):
 	if not instance.order_id:
@@ -71,9 +81,10 @@ pre_save.connect(pre_save_order_id, sender=Order)
 def post_save_update_total_cart(sender, instance, created, *args, **kwargs):
 	if not created:
 		cart_id = instance.id
-		qs = Order.objects.filter(id=cart_id, active=True)
-		if qs.count() == 1:
-			order_obj = qs.first()
+		qs = Order.objects.filter(cart=cart_id)
+		print('Order QS, update order total ',qs)
+		if qs.exists():
+			order_obj = qs.last()
 			order_obj.update_total()
 
 post_save.connect(post_save_update_total_cart, sender=Cart)

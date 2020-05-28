@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<p>You cart number is {{cart_obj}}</p>
+<div class="grid">
+	
+	{% for product in product_list %}
+	<div class="card">
+		<p>{{product.title}}</p>
+		<p>{{product.price}}</p>
+		<img width='150px' src="{{product.image.url}}" alt="">
+		{% include 'carts/snippets/cart_update.html' with next_url=request.build_absolute_uri %}
+	</div>
+	{% endfor %}
+</div>
+{% endblock %}

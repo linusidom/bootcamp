@@ -139,5 +139,20 @@ Products
   - updated
   - timestamps
 
-
+- Credit Card
+ - Create Customer ID
+  - Billing Profile pre-save
+  - if I don't have a customer_id and I have an email
+  - Create a Stripe ID
+ 
+ - Create Card (save for future use)
+  - setup payment page (Stripe Element)
+   - https://stripe.com/docs/stripe-js
+   - Update StripeTokenHandler to use Fetch (send to payment_processing with token)
+   
+  - setup payment_processing
+    customer = stripe.Customer.retrieve(billing_profile.customer_id)
+    stripe_card_response = stripe.Customer.create_source(customer.id, source=token)
+    - add card
+     - new_card_object = Card.objects.add_new(billing_profile, stripe_card_response)
 

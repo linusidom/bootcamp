@@ -1,3 +1,4 @@
+from django.shortcuts import redirect
 from django.db import models
 from django.db.models.signals import post_save, pre_save
 from django.contrib.auth import get_user_model
@@ -16,6 +17,7 @@ class BillingManager(models.Manager):
 		billing_profile = None
 		created = False
 		user = request.user
+
 		guest_email_id = request.session.get('guest_email_id')
 
 		billing_profile_id = request.session.get('billing_profile_id')
@@ -28,7 +30,7 @@ class BillingManager(models.Manager):
 					billing_profile.save()
 		elif user.is_authenticated:
 			if user.email:
-				billing_profile = self.model.objects.create(user=user, email=email)
+				billing_profile = self.model.objects.create(user=user, email=user.email)
 			else:
 				billing_profile = self.model.objects.create(user=user)
 			request.session['billing_profile_id'] = billing_profile.id
@@ -47,7 +49,7 @@ class BillingProfile(models.Model):
 	timestamp = models.DateTimeField(auto_now_add=True)
 	updated = models.DateTimeField(auto_now=True)
 	customer_id = models.CharField(max_length=100, null=True, blank=True)
-	default = models.BooleanField(default=True)
+	
 	objects = BillingManager()
 
 	def __str__(self):
@@ -98,6 +100,7 @@ class Card(models.Model):
 	exp_month = models.IntegerField(null=True, blank=True)
 	exp_year = models.IntegerField(null=True, blank=True)
 	last4 = models.CharField(max_length=4, null=True, blank=True)
+	default = models.BooleanField(default=True)
 
 	objects = CardManager()
 
@@ -114,7 +117,8 @@ class ChargeManager(models.Manager):
 			if cards.exists():
 				card_obj = cards.first()
 		if card_obj is None:
-			return False, 'No cards available'
+			print('No Cards')
+			return None, None
 		charge = stripe.Charge.create(
 			amount=int(order_obj.total) * 100,
 			currency='usd',

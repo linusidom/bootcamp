@@ -44,6 +44,9 @@ class Cart(models.Model):
 	def __str__(self):
 		return str(self.id)
 
+
+	class Meta:
+		ordering = ['timestamp']
 def m2m_changed_product(sender, instance, *args, **kwargs):
 	prod_objs = instance.products.all()
 	total = 0

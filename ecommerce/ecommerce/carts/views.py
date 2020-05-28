@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from carts.models import Cart
 from products.models import Product
-from billing.models import BillingProfile
+from billing.models import BillingProfile, Card
 from orders.models import Order
 from addresses.models import Address
 from addresses.forms import AddressForm
@@ -39,20 +39,26 @@ def cart_update(request, pk):
 def cart_checkout(request):
 	order_obj = None
 	old_addresses = None
+	credit_card = None
 	loginForm = LoginForm()
 	guestForm = GuestForm()
 	addressForm = AddressForm()
 	# print('AddressForm', addressForm)
 	cart_obj, cart_created = Cart.objects.new_or_get(request)
 	billing_profile, bill_created = BillingProfile.objects.new_or_get(request)
+	cards = Card.objects.filter(billing_profile=billing_profile, default=True)
+	if cards.exists():
+		credit_card = cards.last()
+
 	# print('BillingProfile ',billing_profile)
 	if billing_profile is not None:
 		order_obj, order_created = Order.objects.new_or_get(billing_profile=billing_profile, cart_obj=cart_obj)
+	
 
 	if order_obj is not None:
 		old_addresses = Address.objects.filter(billing_profile=billing_profile)
-	if order_obj.check_done():
-		return redirect('carts:cart_success')
+	
+
 
 	context = {
 		'order_obj':order_obj,
@@ -60,7 +66,8 @@ def cart_checkout(request):
 		'guestForm': guestForm,
 		'addressForm':addressForm,
 		'billing_profile':billing_profile,
-		'old_addresses':old_addresses
+		'old_addresses':old_addresses,
+		'credit_card': credit_card,
 	}
 	return render(request, 'carts/cart_checkout.html', context)
  
@@ -69,11 +76,16 @@ def cart_success(request):
 	cart_obj, cart_created = Cart.objects.new_or_get(request)
 	billing_profile, bill_created = BillingProfile.objects.new_or_get(request)
 	order_obj, order_created = Order.objects.new_or_get(billing_profile=billing_profile, cart_obj=cart_obj)
-	
+	context = {
+		'order_obj':order_obj
+	}
+
 	is_done = order_obj.check_done()
 	if is_done:
 		did_charge, crg_msg = billing_profile.charge(billing_profile, order_obj)
-		print(did_charge, crg_msg)
+		print('Did Charge ',did_charge, crg_msg)
+		if did_charge is None:
+			return redirect('billing:stripe_payment')
 		if did_charge:
 			order_obj.mark_paid()
 			del request.session['cart_id']
@@ -83,4 +95,4 @@ def cart_success(request):
 			}
 			return render(request,'carts/cart_success.html', context)
 		return redirect('carts:cart_checkout')
-	return redirect('carts:cart_checkout')
+	return render(request,'carts/cart_checkout.html', context)
