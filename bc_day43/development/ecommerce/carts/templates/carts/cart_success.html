@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<h4>Order Placed Successfully</h4>
+<table class="table table-striped table-hover">
+	<thead>
+		<th>Item</th>
+		<th></th>
+		<th>Price</th>
+		<th>Total</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>{{order_obj.order_id}}</td>
+			<td>
+				{% for product in order_obj.cart.products.all %}
+					<p>{{product}}</p>
+				{% endfor %}
+			</td>
+			<td>{{order_obj.total}}</td>
+			<td>{{order_obj.shipping_address}} {{order_obj.billing_address}}</td>
+		</tr>
+	</tbody>
+</table>
+
+
+
+{% endblock %}

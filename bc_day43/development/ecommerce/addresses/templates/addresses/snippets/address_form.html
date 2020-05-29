@@ -1,0 +1,16 @@
+<form action="{{ action_url }}" method='POST'>
+	{% csrf_token %}
+
+
+	<input type="hidden" name='address_type' value="{{address_type}}">
+	
+	{% if object_list %}
+		{% for address in object_list %}
+			<input type="radio" name='address' value="{{address.id}}" id="address-{{address.id}}"> {{address}}<br>
+		{% endfor %}
+		<input type="submit" class='btn btn-info' value="Enter Your Address">
+	{% elif form %}
+		{{form.as_p}}
+		<input type="submit" class='btn btn-info' value="Enter Your Address">
+	{% endif %}
+</form>

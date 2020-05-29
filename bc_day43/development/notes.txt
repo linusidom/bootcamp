@@ -1,0 +1,225 @@
+Ecommerce App
+========================
+
+Products App
+ - Create Products - Done
+ 	- How to add products? - Done
+ - Display Products - Done
+ - Upload Images (install Pillow) - Done
+
+	 If we want to Display Pages
+	 	- Build out Models is Optional but very necessary if we want to do anything Dynamic
+	 	- We need to Add Settings - INSTALLED APP
+	 	- We need to add it to Project URLS.py
+	 	- We need URLS.py
+	 	- We need Views.py
+	 	- We need Templates for each Page
+	 	
+ - Seach Functionality - Still to do
+ - Add Product to Cart - Still to do
+
+
+Accounts App
+=======================
+
+
+ - Basic Authentication with Default Django Parameters
+ - Logged in User or Guest User
+
+- Build Accounts app - Done
+ - Forms - Done
+  - Login / Signup - Guest
+ - Views
+  - Function based Views for login, logout, and signup and Guest - Done 
+ - Urls
+  - Project URLS for accounts all and Account urls to map to views - Done
+ - Templates
+  - Show the Form to the user Signup/Login- Done
+ - Build Links into Navbar
+  - show if user is authenticated or not login, logout, signup - Done
+ - Include on the Main index both login and guest - Done
+ 
+
+
+
+Cart App
+=========================
+ - Keep track of Products user wants to Purchase
+ - Total amount + Tax
+
+- Carts app to Project URLS and Settings - Done
+ - Add app to URLS.py
+ - Add app to Settings INSTALLED_APPS
+
+ - Add Remove Items from our Cart - Done
+  - create Cart Model 
+  	- user - Done
+  	- products - Done
+  	- subtotal - Done
+  	- total - Done
+  	- active - Done
+  	- updated - Done
+  	- timestamp - Done
+
+  - cart_update view - Done
+  - cart_update URL - Done
+  - Cart Home Page Templates - Done
+
+
+Billing Profile
+==================================
+ - Ties all the Orders, Cart, Account information together
+ - Keeps History of the Addresses
+
+ - Model - Done
+  - user FK
+  - email
+  - active
+  - updated
+  - timestamp
+
+  - Post Save - User Created - Done
+   - Create Billing Profile with Email
+  
+  - ModelManager - Done
+   - def new_or_get(self, request)
+   - return billing_object based on request parameters
+
+Orders App
+==============================
+ - Keep track of the Total Cost and Shipping
+ - Specific Order ID for Tracking/Complaints
+ - Track which addresses are used, shipping/billing
+Order
+
+ - Model - Done
+  - billing_profile FK
+  - cart FK
+  - addresses (billing/shipping) FK
+  - order_id
+  - shipping cost
+  - total
+  - active
+  - updated
+  - timestamp
+
+ - pre save update order_id like product slug - Done
+
+ - Post Save - Done
+  - Every Time the Cart is updated/saved, update the order Total
+
+ - Post Save - Done
+  - When the cart is created I want to update the order total as well
+
+ - ModelManager - Done
+  - def new_or_get(self, request)
+   - return billing_object based on request parameters
+
+
+
+
+Addresses
+================================
+
+ - Shipping Address
+ - Billing Address
+ - Tied to the Billing Profile
+ - Order Profile
+
+ - Build Addresses app - Done
+ - Create model  - done
+    billing_profile FK
+    address_type - billing or shipping address
+    address
+    city
+    state
+    postal_code
+    country
+
+  - Add to URLS - Done
+ - Add to project URLS and Setting File - Done
+ - Add addresses to Our Order via Foreign Key - Done
+
+  - Create Views
+    address_create
+    address_update
+
+ - Update Cart Checkout view with address form
+ - Update cart checkout with form
+  - inlude with variable for snippets
+
+
+
+Finalize Basics and Introduce Stripe
+===========================
+ - Build cart success Page
+ - run through guest User and Logged in user
+ - Finalize the checkout with success page
+
+
+ - Order check if it's done or not - Done
+  - if it is done mark the status as paid (we'll address this in a bit)
+  - make a backup of the order_id for future reference - Done
+  - delete it when going back to the checkout - Done
+  - delete the cart_id and cart_items - Done
+  - return cart_success - Done
+
+ - Orders App - Done
+  - make a check_done
+  - make mark_paid
+
+ - History view for older orders
+
+ - introduce Stripe and getting a credit card token
+
+
+
+
+
+
+
+Payment Processing with External Services
+========================================
+ - Stripe Payment Processing
+ - Handle Test Payments
+ - Do CC processing with Stripe API
+ - Keep history of Purchases linked with the Billing Profile
+
+Stripe
+ - Build Payment Page
+ - send Payment Token to back end (fetch)
+ - Create a customer
+ - Create a card
+ - Charge the Card
+
+Omise
+ - Build Payment Page
+ - send Payment Token to back end (fetch)
+ - Create a customer
+ - Create a card
+ - Charge the Card
+
+
+
+
+
+JavaScript / API's for a Better UI
+ - Make the user experience smoother
+ - Introduce API (Django Rest Framework)
+ - Use the Fetch API call within JS Framework
+
+
+
+
+Marketing with External Services
+ - Promotional Matrerial with MailChimp/Gmail
+ - Contact Form
+
+
+Analytics and Sales Reports
+ - Keep Track of Sales History
+ - Income by day/week/month/year
+
+
+
+Other Seller Portal
