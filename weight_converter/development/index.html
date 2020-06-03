@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="Demo Project">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Document</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+    	<div class="jumbotron bg-dark text-center">
+	        <h3 class='text-white m-4'>Weight Calculator</h3>
+	        <div>
+	        	<input type="number" id="weightInput" placeholder="Enter Weight to Convert">
+				<select name="weight" id="weightType">
+					<option value="pounds" id="weightLB" selected>Pounds</option>
+					<option value="kilos" id="weightKG">Kilos</option>
+				</select>
+	        </div>
+	        <div id="messages" class='m-4'></div>
+	        <div id="output" class='grid'>
+	        	<!-- <div class="card">
+	        		<div class="card-header"></div>
+	        		<div class="card-body"></div>
+	        	</div> -->
+
+	        </div>
+		</div>
+
+        
+    </body>
+    <script src="main.js"></script>
+</html>
