@@ -1,22 +1,22 @@
 const keyboardSelection = {
-	thaiLeftTop:['ภ','ถ'],
-	thaiLeftUpper:['ๆ','ไ','ำ','ะ'],
+	thaiLeftTop:['ภ','ถ','ุ'],
+	thaiLeftUpper:['ๆ','ไ','ำ',"พ",'ะ'],
 	thaiLeftHome:['ฟ','ห','ก','ด','เ'],
-	thaiLeftLower:['ผ','ป','แ','อ'],
+	thaiLeftLower:['ผ','ป','แ','อ',"ิ"],
 
-	thaiLeftShiftUpper:['ฎ','ฑ','ธ'],
+	thaiLeftShiftUpper:['ฎ','ฑ','ธ',"ู"],
 	thaiLeftShiftHome:['ฤ','ฆ','ฏ','โ','ฌ'],
 	thaiLeftShiftLower:['ฉ','ฮ'],
 
 
-	thaiRightTop:['ค','ต','จ','ข','ช'],
-	thaiRightUpper:['ร','น','ย','บ','ล','ฃ'],
-	thaiRightHome:['า','ส','ว','ง'],
-	thaiRightLower:['ท','ม','ใ','ฝ'],
+	thaiRightTop:["ึ",'ค','ต','จ','ข','ช'],
+	thaiRightUpper:["ั","ี",'ร','น','ย','บ','ล','ฃ'],
+	thaiRightHome:['้','่','า','ส','ว','ง'],
+	thaiRightLower:["ื",'ท','ม','ใ','ฝ'],
 
-	thaiRightShiftUpper:['ณ','ฯ','ญ','ฐ','ฅ'],
-	thaiRightShiftHome:['ษ','ศ','ซ'],
-	thaiRightShiftLower:['ฒ','ฬ','ฦ'],
+	thaiRightShiftUpper:["๊",'ณ','ฯ','ญ','ฐ','ฅ'],
+	thaiRightShiftHome:["็","๋",'ษ','ศ','ซ'],
+	thaiRightShiftLower:["ื",'ฒ','ฬ','ฦ'],
 	testLetters: ['a','s','d','f']
 }
 
@@ -107,7 +107,7 @@ document.querySelector('#textInput').addEventListener('input', (e) =>{
 		else if(characters[index] === span.innerText){
 			span.classList.add('correct')
 			// console.log('Matched', characters[index], span.innerText)
-			
+			correct = true
 		}
 		else{
 
