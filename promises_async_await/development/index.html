@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="Demo Project">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Document</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+    	<div class="container">
+    		<h3>Search form with API's (Promises vs Async/Await)</h3>
+	       	<div class="form-group">
+	       		<input class='form-control mt-4' type="text" id='search' placeholder="search for country">
+			</div>
+	        <table class='table table-striped table-hover table-dark'>
+	        	<thead>
+	        		<th>Country</th>
+	        		<th>Short Name</th>
+	        		<th>Phone Code</th>
+	        	</thead>
+	        	<tbody id="output">
+	        		
+	        		<tr>
+	        			<td>Country Name</td>
+	        			<td>Country Short Name</td>
+	        			<td>Country Phone Code</td>
+	        		</tr>
+	        	</tbody>
+	        </table>
+        </div>
+    </body>
+    <script src="main.js"></script>
+</html>
