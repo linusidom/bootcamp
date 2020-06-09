@@ -21,11 +21,29 @@
 
 			  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 			    <ul class="navbar-nav mr-auto">
-			      <li class="nav-item dropdown">
+			     
+				  <li class="nav-item dropdown">
+			        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Left Hand</a>
+			        <div class="dropdown-menu" aria-labelledby="navbarDropdown"> 
+						<a class="dropdown-item" href="#" onclick="selector('thaiLeftTop')">Left Top</a>
+						<a class="dropdown-item" href="#" onclick="selector('thaiLeftUpper')">Left Upper</a>
+						<a class="dropdown-item" href="#" onclick="selector('thaiLeftHome')">Left Home</a>
+						<a class="dropdown-item" href="#" onclick="selector('thaiLeftLower')">Left Lower</a>
+			        </div>
+			      </li>
+				  <li class="nav-item dropdown">
+			        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shift Left Hand</a>
+			        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="#" onclick="selector('thaiLeftShiftUpper')">Shift Left Upper</a>
+						<a class="dropdown-item" href="#" onclick="selector('thaiLeftShiftHome')">Shift Left Home</a>
+						<a class="dropdown-item" href="#" onclick="selector('thaiLeftShiftLower')">Shift Left Lower</a>
+			        </div>
+			      </li>
+			       <li class="nav-item dropdown">
 			        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Right Hand</a>
 			        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-				        <a class="dropdown-item" href="#" onclick="selector('thaiRightUpper')">Right Upper</a>
 				        <a class="dropdown-item" href="#" onclick="selector('thaiRightTop')">Right Top</a>
+				        <a class="dropdown-item" href="#" onclick="selector('thaiRightUpper')">Right Upper</a>
 				        <a class="dropdown-item" href="#" onclick="selector('thaiRightHome')">Right Home</a>
 				        <a class="dropdown-item" href="#" onclick="selector('thaiRightLower')">Right Lower</a>
 			        </div>
@@ -39,23 +57,6 @@
 				        <a class="dropdown-item" href="#" onclick="selector('thaiRightShiftLower')">Shift Right Lower</a>
 				    </div>
 			      </li>
-				  <li class="nav-item dropdown">
-			        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Left Hand</a>
-			        <div class="dropdown-menu" aria-labelledby="navbarDropdown"> 
-						<a class="dropdown-item" href="#" onclick="selector('thaiLeftUpper')">Left Upper</a>
-						<a class="dropdown-item" href="#" onclick="selector('thaiLeftTop')">Left Top</a>
-						<a class="dropdown-item" href="#" onclick="selector('thaiLeftHome')">Left Home</a>
-						<a class="dropdown-item" href="#" onclick="selector('thaiLeftLower')">Left Lower</a>
-			        </div>
-			      </li>
-				  <li class="nav-item dropdown">
-			        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shift Left Hand</a>
-			        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="#" onclick="selector('thaiLeftShiftUpper')">Shift Left Upper</a>
-						<a class="dropdown-item" href="#" onclick="selector('thaiLeftShiftHome')">Shift Left Home</a>
-						<a class="dropdown-item" href="#" onclick="selector('thaiLeftShiftLower')">Shift Left Lower</a>
-			        </div>
-			      </li>
 			    </ul>
 			  </div>
 			</nav>
@@ -68,7 +69,7 @@
 
 
         	<!-- Text Display -->
-			<div id="textDisplay" class='p-2'></div>
+			<div id="textDisplay" class='p-2 h4'></div>
 
         	<!-- Input Display -->
         	<form class='form-group'>
